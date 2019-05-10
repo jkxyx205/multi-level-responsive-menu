@@ -1,0 +1,25 @@
+$main-color: #7939cc;   //主色
+
+$color: #666;        //文字
+
+//top bar
+$top-bar-bgColor: transparent;
+$top-bar-color: $color;
+$hover: $main-color;
+
+//second bar
+$second-bar-bgColor: transparent;
+$second-bar-color: $color;
+$second-hover: $main-color;
+
+//菜单
+$nav-bgcolor: #fff; //#202020; //背景色
+$nav-color: $color;
+$nav-hover-color: $main-color;
+
+//全文检索
+$query-btn-bgColor: transparent;
+$query-btn-color: $color;
+$query-input-border: $color;
+$query-input-bgColor: transparent;
+$query-input-color: $color;

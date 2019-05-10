@@ -1,0 +1,24 @@
+// $menu-nav-height: 64px;
+// $menu-nav-position: center;
+
+// $mobile-header-bgcolor: red;
+
+// $mobile-header-split-color: #eaeaea;
+
+
+
+
+@import "../base";
+
+
+@media (min-width: 768px) { //mobile端
+    
+}
+
+@media (min-width: 769px) { //pc端
+    .menu-items {
+        .sub-menu {
+            border-top: 1px solid $main-color;
+        }
+    }
+}
