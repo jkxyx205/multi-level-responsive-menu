@@ -1,0 +1,314 @@
+@import "base";
+
+$nav-bgcolor2:$nav-bgcolor!default;
+
+$mobile-left-width: 260px;
+$mobile-header-bar-height: 50px;
+$mobole-menu-item-padding: 15px;
+$mobile-header-bgcolor: $nav-bgcolor!default; //指明`!default`才能被覆盖；没有default的变量，不不受到引用顺序的影响，直接覆盖
+$mobile-header-split-color: #EBEBEB!default;
+$mobile-header-bgcolor2: $nav-bgcolor2!default;
+
+body {
+    $ham-width: 45px;
+
+    @media (max-width: 768px) { //mobile
+        #menu-nav-prev, #menu-nav-next {
+            display: none;
+        }
+
+        & {
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        header {
+            position: relative;
+            float: left;
+            width: 0;
+            height: 100%;
+            @include transition(width);
+            white-space: nowrap;
+            @include linear-gradient($mobile-header-bgcolor, $mobile-header-bgcolor2);
+            // @include flex();
+            // @include flex-v();
+        }
+
+        .content {
+            position: absolute;
+            left: 0;
+            @include transition();
+            background: #fff;
+            z-index: 2;
+        }
+
+        .mobile-header-bar {
+            position: relative;
+            @include rem(height, $mobile-header-bar-height);
+            @include rem(line-height, $mobile-header-bar-height);
+            width: 100%;
+            @include rem(font-size, 18px);
+            @include box-shadow(0, 2px, 6px, 0px, rgba(0, 0, 0, .1));
+            @include linear-gradient($nav-bgcolor, $nav-bgcolor2);
+
+            .m-logo {
+                display: block;
+                height: 100%;
+                @include rem(padding, 10px 0);
+                margin: 0 auto;
+                @include rem(max-width, 180px);
+                text-align: center;
+
+                img {
+                    vertical-align: baseline;
+                    height: 100%;
+                }
+            }
+
+            .m-search {
+                position: absolute;
+                top: 0;
+                right: 0;
+                display: block;
+                height: 100%;
+                @include rem(width, 60px);
+                text-align: center;
+                .icon-search {
+                    @include rem(font-size, 20px);    
+                }
+            }
+
+            .ham {
+                height: 100%;
+                @include rem(padding, 10px);
+                @include rem(width, $ham-width);
+                display: block;
+
+                .drawer-hamburger-icon {
+                    @include transition(transform);
+                    @include center(vertical);
+
+                    & {
+                        position: relative;
+                        display: block;
+                    }
+
+                    &, &:after, &:before {
+                        height: 1px;
+                        width: 100%;
+                        left: 0;
+                        background-color: $color;
+                     }
+
+                    &:after, &:before {
+                        content: '';
+                        position: absolute;
+                    }
+
+                    &:after {
+                       @include rem(top, 8px);
+                    }
+
+                    &:before {
+                      @include rem(top, -8px);
+                    }
+                }
+            }
+
+            .m-search-input {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                border: none;
+                outline: none;
+                z-index: 999;
+                @include rem(top, -$mobile-header-bar-height);
+                padding: 0 5px;
+                @include transition(top);
+                @include rem(font-size, 16px);    
+
+                &.show {
+                    top: 0;
+                }
+            }
+        }
+
+        &.open {
+            header {
+                width: $mobile-left-width;
+                max-width: calc(100% - #{rem($ham-width)});
+            }
+
+            .ham {
+                .drawer-hamburger-icon {
+                    background: transparent;
+
+                    &:after {
+                        @include rem(top, 0);
+                        @include transform(rotate(-45deg));
+                    }
+
+                    &:before {
+                        @include rem(top, 0);
+                        @include transform(rotate(45deg));
+                    }
+                }
+
+            }
+
+            .content {
+                left: $mobile-left-width;
+                //CSS calc() in media queries  CSS暂时未支持：
+                //https://www.chromestatus.com/feature/5643732019838976
+                @media (max-width: calc(#{$mobile-left-width} + #{rem($ham-width)})) {
+                    left: calc(100% - #{rem($ham-width)});    
+                }
+                
+                @include box-shadow(-2px, 0px, 6px, 0px, rgba(0, 0, 0, .1));
+            }
+        }
+
+        .menu-nav {
+            height: calc(100% - 4.7rem);
+            
+            overflow: auto;
+            .menu-items {
+                li {
+                    $li-padding-width: 15px;
+
+                    position: relative;
+                    overflow: hidden;
+                    
+                    @include rem(padding, 0 $li-padding-width);
+
+                    a {
+                        display: block;
+                        @include rem(line-height, 50px);
+                        border-bottom: 1px solid $mobile-header-split-color;
+                        @include ellipsis();
+                        @include rem(padding-right, 30px);
+                    }
+
+                    .icon-arrowdropdown {
+                        @include transition();
+                        position: absolute;
+                        @include rem(right, $li-padding-width);
+                        @include transform(rotate(-90deg))
+                    }
+
+
+                    &.open {
+                        // & > .sub-menu {
+                            // @include opacity(1);
+                            // display: block;
+                        // }
+
+                        & > a .icon-arrowdropdown {
+                            @include transform(rotate(0))
+                        }
+                    }
+                }
+
+                .sub-menu {
+                    // @include transition();
+                    // @include opacity(0);
+                    display: none;
+                }
+            }
+        }
+        .mobile-header-info {
+            @include rem(padding, 15px);
+
+            .m-language span {
+                @include rem(margin-right, 5px);
+            }
+            
+            .profile {
+
+                @include flex();
+                @include flex-align-center();
+                @include rem(margin, 30px);
+                $img-width: 60px;
+                .avatar, img {
+                    @include rem(width, $img-width);
+                    @include rem(height, $img-width);
+                    @include border-radius(50%);
+                }
+            }
+
+            .detail {
+                @include flex-1();
+                @include rem(padding-left, 20px); 
+
+                line-height: 1.6;
+
+                h2 {
+                    @include rem(font-size, 18px);
+                }
+
+
+                .message {
+                    li {
+                        display: inline-block;
+
+                        &:not(:last-child) {
+                             @include rem(margin-right, 8px);
+                        }
+                    }
+                    span {
+                        position: relative;
+                        top: -2px;
+                        @include rem(left, 4px);
+                    }
+                }
+            }
+
+            .m-language-container {
+                position: absolute;
+                z-index: 2;
+                top: 0;
+                left: 0;
+                height: 0;
+                width: $mobile-left-width; 
+                overflow: hidden;
+                @include linear-gradient($mobile-header-bgcolor, $mobile-header-bgcolor2);;
+                @include transition(all);
+                @include opacity(0);
+
+                &.open {
+                    height: 100%;
+                    @include opacity(1);
+                }
+
+                .language-bar {
+                    @include rem(height, $mobile-header-bar-height);
+                    @include rem(line-height, $mobile-header-bar-height); 
+                    @include rem(padding, 0 15px);
+                    border-bottom: 1px solid $mobile-header-split-color;
+                    .icon-back {
+                        line-height: 1;
+                    }
+                }
+
+                li a {
+                    display: block;
+                    @include rem(line-height, 50px);
+                    text-align: center; 
+                }
+
+            }
+        }
+
+        .content {
+            float: left;
+            width: 100%;
+            height: 100%;
+        }
+
+        .scroll-view {
+            height: calc(100% - #{$mobile-header-bar-height});
+            overflow-y: auto;
+        }
+    } // mobile end
+}

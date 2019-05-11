@@ -1,0 +1,142 @@
+@import "base";
+
+$menu-nav-height: 64px!default;
+$menu-nav-position: right!default;
+$nav-bgcolor2: $nav-bgcolor!default;
+
+
+body {
+    @media (min-width: 769px) { //pc端
+        .mobile-header-bar, .mobile-header-info{
+            display: none;
+        }
+
+        header {
+            .header-info {
+               //TODO
+
+            }
+            .menu-nav {
+                height: $menu-nav-height;
+                @include linear-gradient($nav-bgcolor, $nav-bgcolor2);
+                width: 100%;
+                @include box-shadow(0, 2px, 6px, 0px, rgba(0, 0, 0, .1));
+
+                &.fixed {
+                    position: fixed;
+                    top: 0;
+                }
+
+                .menu-items-container {
+                     @include flex();
+
+                     #menu-nav-prev, #menu-nav-next {
+                        line-height: $menu-nav-height;
+                        height: $menu-nav-height;
+
+                        @include opacity(0);
+
+                        &.show {
+                            @include opacity(1);
+                        }
+                        
+                     }
+
+                     a {
+                        display: block;
+                        padding: 0 $mobole-menu-item-padding;
+                        @include ellipsis();
+                        font-size: 14px;
+                    }
+
+                    .menu-items {
+                        font-size: 0;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-align: $menu-nav-position;
+                        @include flex-1();
+
+                        li {
+                            &.menu-nav-item  {
+                                // float: left; //会换行
+                                position: relative;
+                                display: inline-block; 
+                                vertical-align:top; //高度有问题
+
+                                &.menu-nav-item:first-child {
+                                    @include transition(margin-left);
+                                }
+
+                                &.current > a {
+                                    color: $main-color;
+                                }
+
+                                & > a { // 一级菜单
+                                    line-height: $menu-nav-height;
+                                    height: $menu-nav-height;
+                                    max-width:  calc(7em * 1 + #{$mobole-menu-item-padding * 2}); //显示7个汉字
+                                }
+
+                                .icon-arrowdropdown {
+                                    position: absolute;
+                                    right: 0;
+                                }
+                            }
+
+                            &:hover {
+                                & > .sub-menu {
+                                    display: block!important;
+                                }
+                            }
+                        }
+                        
+                        .sub-menu {
+                            display: none;
+                            position: absolute;
+                            background: #fff;
+                            line-height: 48px;
+
+                            border-top-left-radius: 0;
+                            border-top-right-radius: 0;
+                            border-bottom-right-radius: 2px;
+                            border-bottom-left-radius: 2px;
+
+                            .icon-arrowdropdown {
+                                 @include opacity(0);
+                                 @include transform(rotate(-90deg));
+                            }
+
+                            &:hover .icon-arrowdropdown{
+                                @include opacity(1);
+                            }
+                            
+
+                            @include box-shadow(0, 5px, 25px, 0px, rgba(0, 0, 0, .1));
+
+                            a {
+                                width:  calc(7em * 1 + #{$mobole-menu-item-padding * 4}); //显示7个汉字
+                                text-align: left;
+                                padding: 0 $mobole-menu-item-padding * 2;
+                            }
+
+                            &.second-sub-menu {
+                                position: fixed;
+
+                                .sub-menu {
+                                    left: calc(100% + 1px);
+                                    top: 0;
+                                }
+
+                            }
+
+                        }
+                        
+
+                    }
+
+                }
+            }
+
+        }
+    }
+}

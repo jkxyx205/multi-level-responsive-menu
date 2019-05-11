@@ -1,14 +1,11 @@
 // $menu-nav-height: 64px;
 // $menu-nav-position: center;
 
-// $mobile-header-bgcolor: red;
+// $mobile-header-bgcolor: red!default;
+// $mobile-header-split-color: blue!default;
 
-// $mobile-header-split-color: #eaeaea;
-
-
-
-
-@import "../base";
+@import "../mobile";
+@import "../pc";
 
 
 @media (min-width: 768px) { //mobile端

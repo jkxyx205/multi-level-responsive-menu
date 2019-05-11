@@ -1,5 +1,4 @@
 $main-color: #7939cc;   //主色
-
 $color: #666;        //文字
 
 //top bar
@@ -14,6 +13,8 @@ $second-hover: $main-color;
 
 //菜单
 $nav-bgcolor: #fff; //#202020; //背景色
+// $nav-bgcolor2: red; //背景色渐变色的第二色,如果是纯色，该参数可以不用
+
 $nav-color: $color;
 $nav-hover-color: $main-color;
 
@@ -23,3 +24,8 @@ $query-btn-color: $color;
 $query-input-border: $color;
 $query-input-bgColor: transparent;
 $query-input-color: $color;
+
+//-------------mobile
+// $mobile-header-bgcolor: pink;
+// $mobile-header-bgcolor2:red;
+// $mobile-header-split-color: green;

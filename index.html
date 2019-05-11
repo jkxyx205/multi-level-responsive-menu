@@ -50,7 +50,7 @@
                     <a id="menu-nav-prev" href="javascript:;"><</a>
                     <ul class="menu-items" id="menu-items">
                         <li class="menu-nav-item current dropdown">
-                            <a href="javascript:;">技术亮点及业绩<i class="iconfont icon-arrowdropdown"></i></a>
+                            <a href="javascript:;">1-技术亮点及业绩<i class="iconfont icon-arrowdropdown"></i></a>
                             <ul class="sub-menu second-sub-menu">
                                 <li class="dropdown">
                                     <a href="javascript:;">技术亮<i class="iconfont icon-arrowdropdown"></i></a>
@@ -63,7 +63,7 @@
                             </ul>
                         </li>
                         <li class="menu-nav-item dropdown">
-                            <a href="javascript:;">Contact US中国股市地方发书法<i class="iconfont icon-arrowdropdown"></i></a>
+                            <a href="javascript:;">2-Contact US中国股市地方发书法<i class="iconfont icon-arrowdropdown"></i></a>
                             <ul class="sub-menu second-sub-menu">
                                 <li class="dropdown">
                                     <a href="javascript:;">FNDDDD<i class="iconfont icon-arrowdropdown"></i></a>
@@ -75,20 +75,20 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="menu-nav-item"><a href="#">find-1万色时代ii技术亮点及业绩</a></li>
-                        <li class="menu-nav-item"><a href="#">技术亮点及业</a></li>
-                        <li class="menu-nav-item"><a href="#">find-3</a></li>
-                        <li class="menu-nav-item"><a href="#">find-5</a></li>
-                        <li class="menu-nav-item"><a href="#">find-6</a></li>
-                        <li class="menu-nav-item"><a href="#">find-9</a></li>
-                        <li class="menu-nav-item"><a href="#">find-10</a></li>
-                        <li class="menu-nav-item"><a href="#">find-11</a></li>
-                        <li class="menu-nav-item"><a href="#">find-12</a></li>
-                        <li class="menu-nav-item"><a href="#">find-13</a></li>
-                        <li class="menu-nav-item"><a href="#">find-14</a></li>
-                        <li class="menu-nav-item"><a href="#">find-技术亮点及业绩</a></li>
-                        <li class="menu-nav-item"><a href="#">find-技术亮点及业绩2</a></li>
-                        <li class="menu-nav-item"><a href="#">Last</a></li>
+                        <li class="menu-nav-item"><a href="#">3-find-1万色时代ii技术亮点及业绩</a></li>
+                        <li class="menu-nav-item"><a href="#">4-技术亮点及业</a></li>
+                        <li class="menu-nav-item"><a href="#">5-find-3</a></li>
+                        <li class="menu-nav-item"><a href="#">6-find-5</a></li>
+                        <li class="menu-nav-item"><a href="#">7-find-6</a></li>
+                        <li class="menu-nav-item"><a href="#">8-find-9</a></li>
+                        <li class="menu-nav-item"><a href="#">9-find-10</a></li>
+                        <li class="menu-nav-item"><a href="#">10-find-11</a></li>
+                        <li class="menu-nav-item"><a href="#">11-find-12</a></li>
+                        <li class="menu-nav-item"><a href="#">12-find-13</a></li>
+                        <li class="menu-nav-item"><a href="#">13-find-14</a></li>
+                        <li class="menu-nav-item"><a href="#">14-find-技术亮点及业绩</a></li>
+                        <li class="menu-nav-item"><a href="#">15-find-技术亮点及业绩2</a></li>
+                        <li class="menu-nav-item"><a href="#">16-Last</a></li>
                     </ul>
                     <a id="menu-nav-next" href="javascript:;">></a>
                 </div>
@@ -120,147 +120,10 @@
     </main>
 
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="header.js"></script>
     <script>
-        var threshold = 768;
 
-        $(function () {
-            $('#ham').on('click', function() {
-               $('body').toggleClass('open')
-            })
-
-            $('#m-search').on('click', function() {
-                $('#m-search-input').addClass("show")
-            })
-
-            $('#layout').on('click', function() {
-                if (isMobileMode()) {
-                    $('body').hasClass('open') && $('#ham').trigger('click')
-                    $('#m-search-input').removeClass("show")
-                }
-                
-            })
-
-            //----------------------------固定菜单栏--------------------------//
-            var $nav = $('#menu-nav')
-            var offset = $nav.offset().top
-
-            var hasFixed = false
-
-            $(window).on('scroll', function() {
-                if ($(document).scrollTop() > offset && !hasFixed) {
-                    $nav.addClass("fixed")
-                    hasFixed = true
-                } else if ($(document).scrollTop() <= offset && hasFixed) {
-                    $nav.removeClass("fixed")
-                    hasFixed = false
-                }
-            })
-
-            function isMobileMode() {
-                return document.documentElement.clientWidth <= threshold
-            }
-
-
-            //----------------------------翻页--------------------------//
-            var $firstItem = $('#menu-items .menu-nav-item:first-child')
-            var $menuNavPrev = $('#menu-nav-prev')
-            var $menuNavNext = $('#menu-nav-next')
-
-            var pageWidth = 0;
-
-            var totalWidth = 0
-            $('.menu-nav-item').each(function() {
-                totalWidth += $(this).width()
-            })
-     
-            var maxOffset = 0
-            var minOffset = 0
-            var offsetCursor = 0
-
-            if (!isMobileMode()) { //初始化pc菜单
-                initData()
-                initItem() 
-                $('body').addClass('pc')
-            } else {
-                $('body').addClass('mobile')
-
-                //----------------------------mobile菜单栏--------------------------//
-                $('header li.dropdown > a').on('click', function (e) {
-                    $(this).parent().toggleClass('open')
-                    $(this).next().slideToggle()
-                })
-
-            }
-
-            // console.log('pageWidth:%f, totalWidth:%f', pageWidth, totalWidth)
-
-            $(window).on('resize', function() {
-
-                initData()
-                initItem() 
-
-                if (offsetCursor >= minOffset) {
-                    offsetCursor = minOffset
-                } else if (offsetCursor <= maxOffset) {
-                    offsetCursor = maxOffset
-                }
-
-                console.log("offset: %f", offsetCursor)
-                offsetItem(offsetCursor)
-            })
-
-            $menuNavNext.on('click', function() {
-                    offsetCursor = offsetCursor - pageWidth
-
-                    if (offsetCursor < maxOffset ) { //最后一页
-                        offsetCursor = maxOffset
-                    } 
-                    offsetItem(offsetCursor)
-               
-            })
-
-            $menuNavPrev.on('click', function() {
-                    offsetCursor = offsetCursor + pageWidth
-
-                    if (offsetCursor > minOffset ) { //第一页
-                        offsetCursor = minOffset
-                    } 
-
-                    offsetItem(offsetCursor)
-            })
-
-            function offsetItem(offsetCursor) {
-                $firstItem.css('margin-left', offsetCursor)
-                initItem()
-            }
-
-            function initData() {
-                 pageWidth = $('#menu-items').width() //一页的宽度
-                 maxOffset = pageWidth - totalWidth
-            }
-
-            function initItem() {
-                if (offsetCursor > maxOffset) { //是否有下一页
-                    $menuNavNext.addClass('show')
-                } else {
-                    $menuNavNext.removeClass('show')
-                }
-
-                if (offsetCursor < minOffset) { //是否有上一页
-                    $menuNavPrev.addClass('show')
-                } else {
-                     $menuNavPrev.removeClass('show')
-                }
-            }
-
-        })
-
-        
-
-        //----------------------------mobile语言切换--------------------------//
-        $('#selectLangBtn, #langSelect').on('click', function () {
-            $('#m-language-container').toggleClass('open')
-        })
+       
     </script>
 </body>
 </html>
