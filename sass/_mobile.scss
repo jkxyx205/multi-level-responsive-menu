@@ -33,6 +33,10 @@ body {
             @include linear-gradient($mobile-header-bgcolor, $mobile-header-bgcolor2);
             // @include flex();
             // @include flex-v();
+
+            // a {
+            //     color: $nav-color;
+            // }
         }
 
         .content {
@@ -98,7 +102,7 @@ body {
                         height: 1px;
                         width: 100%;
                         left: 0;
-                        background-color: $color;
+                        background-color: $nav-color;
                      }
 
                     &:after, &:before {

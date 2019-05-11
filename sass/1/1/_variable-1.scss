@@ -1,31 +1,21 @@
-$main-color: #7939cc;   //主色
-$color: #666;        //文字
+////////////////////////////////////////////////////////////// 最简配置
+$main-color: #fc6921;   //主色
+$color: #a1a1a1;        //通用文字色
 
-//top bar
-$top-bar-bgColor: transparent;
-$top-bar-color: $color;
-$hover: $main-color;
-
-//second bar
-$second-bar-bgColor: transparent;
-$second-bar-color: $color;
-$second-hover: $main-color;
+////////////////////////////////////////////////////////////// 复杂配置
+$main-color: #d97b48;   //主色
 
 //菜单
-$nav-bgcolor: #fff; //#202020; //背景色
-// $nav-bgcolor2: red; //背景色渐变色的第二色,如果是纯色，该参数可以不用
+// $nav-bgcolor: $main-color; //菜单背景色
 
-$nav-color: $color;
-$nav-hover-color: $main-color;
+// $color: #a1a1a1;        //通用文字色
 
-//全文检索
-$query-btn-bgColor: transparent;
-$query-btn-color: $color;
-$query-input-border: $color;
-$query-input-bgColor: transparent;
-$query-input-color: $color;
+// $nav-color: #f3d7ca; //一级菜单文字色
+// $nav-hover-color: #fff; //一级菜单hover文字颜色
+// $nav-hover-bgColor: #e6824c; //一级菜单hover文字色
 
-//-------------mobile
-// $mobile-header-bgcolor: pink;
-// $mobile-header-bgcolor2:red;
-// $mobile-header-split-color: green;
+
+////////////////////////////////////////////////////////////// 移动端菜单特色配置：一般用不到
+// $mobile-header-bgcolor: pink; //移动端页眉背景色
+// $mobile-header-bgcolor2:red;  //移动端页眉渐变第二色
+// $mobile-header-split-color: $nav-color; //移动端分割线色

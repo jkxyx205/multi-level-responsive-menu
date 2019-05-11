@@ -33,6 +33,7 @@ body {
                      #menu-nav-prev, #menu-nav-next {
                         line-height: $menu-nav-height;
                         height: $menu-nav-height;
+                        // color: $nav-hover-color;
 
                         @include opacity(0);
 
@@ -75,6 +76,12 @@ body {
                                     line-height: $menu-nav-height;
                                     height: $menu-nav-height;
                                     max-width:  calc(7em * 1 + #{$mobole-menu-item-padding * 2}); //显示7个汉字
+                                    
+                                    // color: $nav-color;
+
+                                    // &:hover {
+                                    //     color: $nav-hover-color;
+                                    // }
                                 }
 
                                 .icon-arrowdropdown {
@@ -117,6 +124,11 @@ body {
                                 width:  calc(7em * 1 + #{$mobole-menu-item-padding * 4}); //显示7个汉字
                                 text-align: left;
                                 padding: 0 $mobole-menu-item-padding * 2;
+                                color: $color;
+    
+                                &:hover {
+                                    color: $main-color;
+                                }
                             }
 
                             &.second-sub-menu {

@@ -1,6 +1,13 @@
 @import "mixin";
 @import "rem";
 
+$nav-bgcolor: #fff!default;
+$nav-hover-bgColor: #fff!default;
+$nav-color: $color!default;
+$nav-hover-color: $main-color!default;
+$nav-hover-bgColor: #fff!default;
+
+
 html {
     height: 100%;
     font-size: 10px;
@@ -22,15 +29,45 @@ a, a:hover, a:visited, a:focus {
 
 
 body {
-    header,
+    .menu-nav,
+    .mobile-header-info,
     .mobile-header-bar { //页眉共性设置
+        // &, a {
+        //     color: $color;
+        // }
+
+        // a:hover {
+        //     color: $main-color;
+        // }
+
         &, a {
-            color: $color;
+            color: $nav-color;
         }
 
         a:hover {
-            color: $main-color;
+            color: $nav-hover-color;
         }
+
+
+
+        // .sub-menu {
+        //     &, a {
+        //     color: $color;
+        //     }
+
+        //     a:hover {
+        //         color: $nav-h
+        //     }
+        // }
+
+
+
+        // .menu-nav-item > a {
+        //     color: $color;
+        //     &:hover {
+        //         color: $nav-hover-color;
+        //     }
+        // }
        
     }
 }
