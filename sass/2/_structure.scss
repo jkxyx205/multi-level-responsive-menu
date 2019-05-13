@@ -1,0 +1,91 @@
+// $menu-nav-height: 64px;
+$menu-nav-position: center;
+
+// $mobile-header-bgcolor: red!default;
+// $mobile-header-split-color: blue!default;
+
+$header-top-height: 256px;
+$header-split-color: #eaeaea; // 分割线颜色
+
+@import "../mobile";
+@import "../pc";
+
+
+@media (min-width: 768px) { //mobile端
+    
+}
+
+@media (min-width: 769px) { //pc端
+    header {
+        &.fixed {
+            top:  -$header-top-height;
+        }
+
+
+        .logo-bar {
+            position: relative;
+            height: 192px;
+            @include logo(120px);
+            .logo {
+                @include center(both);
+            }
+        }
+
+        .tool-bar {
+           $width: 30px;
+           height: 64px;
+           line-height: 64px;
+           @include operator-bar-1(64px, $width, 30px);
+
+           .operator-bar-1 {
+               li > a {
+                border-color: $color;
+               }
+
+               .icon-arrow-down {
+                 left: $width + 2px;
+                 @include center(vertical);
+               }
+
+               .login .icon-arrow-down {
+                left: $width + 4px;
+               }
+
+               &.right-side {
+                    li > a {
+                        border: none;
+                    } 
+
+                    @at-root #searchInput-1 {
+                        right: $width;
+                        padding: 0;
+                        width: 0;
+                        height: 0;
+                        border-radius: 0;
+                        border-top-width: 0;
+                        border-left-width: 0;
+                        border-right-width: 0;
+                        border-bottom-color: $header-split-color;
+                    }
+
+                    #searchBtn-trigger-1.open {
+                        & + form > input {
+                            height: $width;
+                            padding-left: 0;
+                        }
+                     } 
+               } 
+           } 
+            
+        }
+
+        .top-container {
+            border-bottom: 1px solid $header-split-color;
+        }
+
+    }
+
+    .content {
+        padding-top: $header-top-height;
+    }
+}

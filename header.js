@@ -7,10 +7,12 @@
   var MODE_PC = 'pc', MODE_MOBILE = 'mobile'
 
  // 缓存jQuery对象
+  var $header = $('header')
   var $firstItem = $('#menu-items .menu-nav-item:first-child')
   var $menuNavPrev = $('#menu-nav-prev')
   var $menuNavNext = $('#menu-nav-next')
-  var $nav = $('#menu-nav')
+  var $nav = $('#nav')
+  var $searchBtnTrigger1 = $('#searchBtn-trigger-1')
  
   var $dropdownLi = $('header li.dropdown > a');
   var handleModeChanging = false
@@ -28,6 +30,8 @@
             || (isPcMode() && winMode === MODE_MOBILE)
   }
 
+  var search_value = "";
+
   var InitHandler = function () {
 
     this.pc = function() {
@@ -41,6 +45,44 @@
                 totalWidth += $(this).width()
             })
 
+
+
+            function initEvent() {
+
+                // 阻止事件被document捕获
+                $('.search').on('click', function(e) {
+                    e.stopPropagation()
+                })
+
+                // search1
+                var $search = $('#searchInput-1')
+                var $searchBtnTrigger1 =  $('#searchBtn-trigger-1')
+
+                
+                $searchBtnTrigger1.on('click', function(e) {
+                    var value = $search.val()   
+                    if ($(this).hasClass('open') && value) { //search
+                        console.log('search by keywords: %s', value)
+                    } else if (!$(this).hasClass('open')) { //open
+                        $(this).addClass('open')
+                    } else {
+                        $(document).trigger('click')
+                    }
+                })
+
+
+
+                $(document).on('click', function(e) {
+                    //search btn-1
+                    $searchBtnTrigger1.removeClass('open')
+                   
+                })
+
+            }
+
+
+            initEvent()
+
             function MenuFixedReigster () {
                     this.init = function () {
                         var offset = $nav.offset().top
@@ -48,10 +90,10 @@
 
                         $(window).on('scroll', function() {
                             if ($(document).scrollTop() > offset && !hasFixed) {
-                                $nav.addClass("fixed")
+                                $header.addClass("fixed")
                                 hasFixed = !hasFixed
                             } else if ($(document).scrollTop() <= offset && hasFixed) {
-                                $nav.removeClass("fixed")
+                                $header.removeClass("fixed")
                                 hasFixed = !hasFixed
                             }
                         }) 
@@ -67,6 +109,7 @@
                function MenuPageRegister () {
                     var pageWidth = 0
                     var maxOffset = 0
+
                     var minOffset = 0
                     var offsetCursor = 0
                     var resizeWaiting = false
@@ -94,6 +137,8 @@
                         if (resizeWaiting)
                             return
 
+
+
                         resizeWaiting = true
 
                         if (resizeTimer) clearTimeout(resizeTimer)
@@ -105,13 +150,17 @@
 
                             initPageInfo()
 
-                            if (offsetCursor > minOffset) {
-                                offsetCursor = minOffset
-                            } else if (offsetCursor < maxOffset) {
-                                offsetCursor = maxOffset
-                            }
+                            // if (totalWidth < pageWidth) {//一页显示得下
+                            //     return
+                            // }
 
-                            moveItem(offsetCursor)
+                            // if (offsetCursor > minOffset) {
+                            //     offsetCursor = minOffset
+                            // } else if (offsetCursor < maxOffset) {
+                            //     offsetCursor = maxOffset
+                            // }
+
+                            moveItem()
                             resizeWaiting = false
 
                         } , 500);
@@ -123,26 +172,40 @@
                         $menuNavNext.on('click', function() {
                             offsetCursor = offsetCursor - pageWidth
 
-                            if (offsetCursor < maxOffset ) { //最后一页
-                                offsetCursor = maxOffset
-                            } 
+                            // if (offsetCursor < maxOffset ) { //最后一页
+                            //     offsetCursor = maxOffset
+                            // } 
 
-                            moveItem(offsetCursor)
+                            moveItem()
                         })
 
                         $menuNavPrev.on('click', function() {
                             offsetCursor = offsetCursor + pageWidth
 
-                            if (offsetCursor > minOffset ) { //第一页
-                                offsetCursor = minOffset
-                            } 
+                            // if (offsetCursor > minOffset ) { //第一页
+                            //     offsetCursor = minOffset
+                            // } 
 
-                            moveItem(offsetCursor)
+                            moveItem()
                         })
 
                     }
 
-                    function moveItem(offsetCursor) {
+
+                    function moveItem() {
+                        if (maxOffset == 0)
+                            return
+                        
+                        if (offsetCursor > minOffset) {
+                            offsetCursor = minOffset
+                        } else if (offsetCursor < maxOffset) {
+                            offsetCursor = maxOffset
+                        }
+
+                        // if (totalWidth < pageWidth) {//一页显示得下
+                        //     offsetCursor = minOffset
+                        // }
+
                         $firstItem.css('margin-left', offsetCursor)
                         handleArrowIcon()
                     }
@@ -150,6 +213,11 @@
                     function initPageInfo () {
                          pageWidth = $('#menu-items').width() //一页的宽度
                          maxOffset = pageWidth - totalWidth
+                         maxOffset = maxOffset < 0 ? maxOffset : 0
+
+                         console.log("totalWidth: " + totalWidth)
+                         console.log("pageWidth: " + pageWidth)
+                         console.log("maxOffset: " + maxOffset)
                     }
 
                     function handleArrowIcon () {

@@ -4,36 +4,182 @@ $menu-nav-height: 64px!default;
 $menu-nav-position: right!default;
 $nav-bgcolor2: $nav-bgcolor!default;
 
+/*
+使用中ul元素上
+*/
+@mixin floatLi($margin-right: 15px) {
+    & > li {
+        float: left;
+        &:not(:last-child) {
+            margin-right: $margin-right;
+        }
+    }
+}
+
+
+// components
+@mixin operator-bar-1($height: 50px, $width: 30px, $margin-right: 15px) {
+  .operator-bar-1 { //搜索，登录注册，语言
+        @include floatLi($margin-right);
+
+        
+        & > li {
+            position: relative;
+            height: $height;
+            width: $width;
+
+            .iconfont {
+                line-height: 1;
+            }
+
+
+            & > a {
+                height: $width;
+                border-radius: 50%;
+                border: 1px solid $color;
+                &:hover {
+                    border-color: $main-color;
+                }
+                line-height: $width;
+                width: 100%;
+                display: inline-block;
+                text-align: center;
+                @include center(vertical);
+            }
+            
+            &.search {
+
+                input {
+                    right: 0;
+                    @include center(vertical);
+                    height: $width;
+                    width: 100%;
+                    border-radius: 50%;
+                    border: 1px solid $nav-color;
+                    border-radius: $width / 2;
+                    text-align: left;
+                    padding: 0 #{$width - 2px} 0 0;
+                    outline: none;
+                    color: $color;
+                    background: transparent;
+                    
+                    @include transition(all);
+                }
+
+                @at-root #searchBtn-trigger-1 {
+                    position: absolute;
+                    z-index: 2;
+                    border-color: transparent;
+
+                    &.open {
+                    
+                        & + form > input {
+                            padding-left: $width / 2;
+                            width: 200px;
+                            
+                            background-color: #fff;
+                        }
+                    } 
+                }
+            }
+            
+            &:hover {
+                & > .dropdown {
+                    display: block;
+                }
+            }
+        } 
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            z-index: 999;
+            top: 100%;
+            border-radius: 3px;
+            @include box-shadow(0, 2px, 6px, 0px, rgba(0, 0, 0, .1));
+            @include center(horizontal);
+
+            a {
+                color: $color;
+    
+                &:hover {
+                    color: $main-color;
+                }       
+            }     
+
+            ul {
+                position: relative;
+                background-color: #fff;
+            }
+
+            li {
+                line-height: 35px;
+                width: 100px;
+                padding: 0 15px;
+                text-align: center;
+            }
+            
+            $width: 10px;
+
+            .arrow {
+                width: $width;
+                height: $width;
+                @include center(horizontal);
+                margin-left: -$width / 2;
+                top: calc(-#{$width} / 2);
+                @include transform(rotate(-45deg));
+                background-color: #fff;
+                @include box-shadow(0, 2px, 6px, 0px, rgba(0, 0, 0, .1));
+
+            }
+        }
+    }
+}  
+
+@mixin logo($height: 100%) {
+    .logo {
+        display: inline-block;
+        padding: $height * .1;
+        height: $height;
+        img {
+            height: 100%;
+            max-width: 2.4 * $height;
+        }
+    }
+} 
 
 body {
     @media (min-width: 769px) { //pc端
-        .mobile-header-bar, .mobile-header-info{
+        .mobile-element {
             display: none;
         }
 
-        header {
-            .header-info {
-               //TODO
 
-            }
-            .menu-nav {
+        header {
+            @include box-shadow(0, 2px, 6px, 0px, rgba(0, 0, 0, .1));
+                
+            position: fixed;
+            top: 0;
+            width: 100%;
+            @include transition(top);
+            background-color: #fff;
+            z-index: 999;
+
+            .nav {
                 height: $menu-nav-height;
                 @include linear-gradient($nav-bgcolor, $nav-bgcolor2);
-                width: 100%;
-                @include box-shadow(0, 2px, 6px, 0px, rgba(0, 0, 0, .1));
+            }
 
-                &.fixed {
-                    position: fixed;
-                    top: 0;
-                }
-
+            .menu-nav {
+                
+                width: 100%; // 必须要一个宽度，不然没法overflow
+               
                 .menu-items-container {
                      @include flex();
 
                      #menu-nav-prev, #menu-nav-next {
                         line-height: $menu-nav-height;
                         height: $menu-nav-height;
-                        // color: $nav-hover-color;
 
                         @include opacity(0);
 
@@ -43,9 +189,17 @@ body {
                         
                      }
 
-                     a {
+                     #menu-nav-prev {
+                        padding-right: 15px;
+                     }
+
+
+                     #menu-nav-next {
+                        padding-left: 15px;
+                     }
+
+                    a {
                         display: block;
-                        padding: 0 $mobole-menu-item-padding;
                         @include ellipsis();
                         font-size: 14px;
                     }
@@ -54,10 +208,16 @@ body {
                         font-size: 0;
                         overflow: hidden;
                         white-space: nowrap;
+                        
                         text-align: $menu-nav-position;
                         @include flex-1();
 
+                        a {
+                            padding: 0 $mobole-menu-item-padding;
+                        }
+
                         li {
+
                             &.menu-nav-item  {
                                 // float: left; //会换行
                                 position: relative;
@@ -68,20 +228,18 @@ body {
                                     @include transition(margin-left);
                                 }
 
+                                &.current, &:hover {
+                                    background: $nav-hover-bgColor;    
+                                }
+
                                 &.current > a {
-                                    color: $main-color;
+                                    color: $nav-hover-color;
                                 }
 
                                 & > a { // 一级菜单
                                     line-height: $menu-nav-height;
                                     height: $menu-nav-height;
                                     max-width:  calc(7em * 1 + #{$mobole-menu-item-padding * 2}); //显示7个汉字
-                                    
-                                    // color: $nav-color;
-
-                                    // &:hover {
-                                    //     color: $nav-hover-color;
-                                    // }
                                 }
 
                                 .icon-arrowdropdown {
@@ -93,6 +251,7 @@ body {
                             &:hover {
                                 & > .sub-menu {
                                     display: block!important;
+                                    @include opacity(1);
                                 }
                             }
                         }
@@ -107,6 +266,8 @@ body {
                             border-top-right-radius: 0;
                             border-bottom-right-radius: 2px;
                             border-bottom-left-radius: 2px;
+                            @include opacity(0);
+                            @include transition();
 
                             .icon-arrowdropdown {
                                  @include opacity(0);
@@ -140,10 +301,7 @@ body {
                                 }
 
                             }
-
                         }
-                        
-
                     }
 
                 }

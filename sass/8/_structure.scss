@@ -1,0 +1,55 @@
+// $menu-nav-height: 64px;
+// $menu-nav-position: center;
+
+// $mobile-header-bgcolor: red!default;
+// $mobile-header-split-color: blue!default;
+
+$header-top-height: 0;
+$header-split-color: #eaeaea; //
+
+@import "../mobile";
+@import "../pc";
+
+
+@media (min-width: 768px) { //mobile端
+    
+}
+
+@media (min-width: 769px) { //pc端
+    header {
+        &.fixed {
+            top:  -$header-top-height;
+        }
+
+        .nav {
+            
+            @include flex();    
+
+            .menu-container {
+                @include flex-1();
+                padding: 0px 30px;
+                overflow: hidden;
+            }
+            
+            $width: 30px;
+            @include operator-bar-1(64px, $width, 15px);
+            @include logo();
+
+            .tool-container {
+               
+                // padding-top: calc(#{($menu-nav-height - $width)} / 2)
+                
+            }
+        }
+        .menu-items {
+            .sub-menu {
+                border-top: 1px solid $main-color;
+            }
+        }
+
+    }
+
+    .content {
+        padding-top: $header-top-height;
+    }
+}

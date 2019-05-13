@@ -28,46 +28,28 @@ a, a:hover, a:visited, a:focus {
 }
 
 
-body {
-    .menu-nav,
-    .mobile-header-info,
-    .mobile-header-bar { //页眉共性设置
-        // &, a {
-        //     color: $color;
-        // }
+body { // 未来 删除该部分 style 中的base.css设置
 
-        // a:hover {
-        //     color: $main-color;
-        // }
-
+    header {
         &, a {
-            color: $nav-color;
+            color: $color;
         }
 
-        a:hover {
-            color: $nav-hover-color;
+        a:hover, a:focus {
+            color: $main-color;
         }
 
+        .nav,
+        .mobile-header-info, 
+        .mobile-header-bar { //页眉共性设置:
 
+            &, a {
+                color: $nav-color;
+            }
 
-        // .sub-menu {
-        //     &, a {
-        //     color: $color;
-        //     }
-
-        //     a:hover {
-        //         color: $nav-h
-        //     }
-        // }
-
-
-
-        // .menu-nav-item > a {
-        //     color: $color;
-        //     &:hover {
-        //         color: $nav-hover-color;
-        //     }
-        // }
-       
+            a:hover, a:focus {
+                color: $nav-hover-color;
+            }
+        }
     }
 }

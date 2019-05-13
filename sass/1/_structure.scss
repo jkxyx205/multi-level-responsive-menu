@@ -4,6 +4,9 @@
 // $mobile-header-bgcolor: red!default;
 // $mobile-header-split-color: blue!default;
 
+$header-top-height: 0;
+
+
 @import "../mobile";
 @import "../pc";
 
@@ -13,13 +16,38 @@
 }
 
 @media (min-width: 769px) { //pc端
-    .menu-items {
-        .sub-menu {
-            border-top: 1px solid $main-color;
+    header {
+        &.fixed {
+            top:  -$header-top-height;
+        }
+
+        .nav {
+            .container {
+                @include flex(); 
+            }
+
+            .menu-container {
+                @include flex-1();
+                padding: 0px 30px;
+                overflow: hidden;
+            }
+            
+            $width: 30px;
+            @include operator-bar-1($menu-nav-height, $width, 15px);
+            
+            @include logo($menu-nav-height);
+
+            .operator-bar-1 > li > a {
+                
+                &, &:hover, &:visited {
+                    color: $nav-color;
+                    border-color: $nav-color;
+                }
+            }
         }
     }
 
-    .menu-nav-item:hover {
-        background: $nav-hover-bgColor;
+    .content {
+        padding-top: $header-top-height;
     }
 }
