@@ -55,7 +55,7 @@ $nav-bgcolor2: $nav-bgcolor!default;
                     height: $width;
                     width: 100%;
                     border-radius: 50%;
-                    border: 1px solid $nav-color;
+                    border: 1px solid $color;
                     border-radius: $width / 2;
                     text-align: left;
                     padding: 0 #{$width - 2px} 0 0;
@@ -88,51 +88,52 @@ $nav-bgcolor2: $nav-bgcolor!default;
                     display: block;
                 }
             }
+
+            .dropdown {
+                display: none;
+                position: absolute;
+                z-index: 999;
+                top: 100%;
+                border-radius: 3px;
+                @include box-shadow(0, 2px, 6px, 0px, rgba(0, 0, 0, .1));
+                @include center(horizontal);
+
+                a {
+                    color: $color;
+        
+                    &:hover {
+                        color: $main-color;
+                    }       
+                }     
+
+                ul {
+                    position: relative;
+                    background-color: #fff;
+                }
+
+                li {
+                    line-height: 35px;
+                    width: 100px;
+                    padding: 0 15px;
+                    text-align: center;
+                }
+                
+                $width: 10px;
+
+                .arrow {
+                    width: $width;
+                    height: $width;
+                    @include center(horizontal);
+                    margin-left: -$width / 2;
+                    top: calc(-#{$width} / 2);
+                    @include transform(rotate(-45deg));
+                    background-color: #fff;
+                    @include box-shadow(0, 2px, 6px, 0px, rgba(0, 0, 0, .1));
+                }
+            }
         } 
 
-        .dropdown {
-            display: none;
-            position: absolute;
-            z-index: 999;
-            top: 100%;
-            border-radius: 3px;
-            @include box-shadow(0, 2px, 6px, 0px, rgba(0, 0, 0, .1));
-            @include center(horizontal);
 
-            a {
-                color: $color;
-    
-                &:hover {
-                    color: $main-color;
-                }       
-            }     
-
-            ul {
-                position: relative;
-                background-color: #fff;
-            }
-
-            li {
-                line-height: 35px;
-                width: 100px;
-                padding: 0 15px;
-                text-align: center;
-            }
-            
-            $width: 10px;
-
-            .arrow {
-                width: $width;
-                height: $width;
-                @include center(horizontal);
-                margin-left: -$width / 2;
-                top: calc(-#{$width} / 2);
-                @include transform(rotate(-45deg));
-                background-color: #fff;
-                @include box-shadow(0, 2px, 6px, 0px, rgba(0, 0, 0, .1));
-
-            }
-        }
     }
 }  
 
@@ -180,6 +181,7 @@ body {
                      #menu-nav-prev, #menu-nav-next {
                         line-height: $menu-nav-height;
                         height: $menu-nav-height;
+                        color: $nav-light-color;
 
                         @include opacity(0);
 

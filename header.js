@@ -65,6 +65,7 @@
                         console.log('search by keywords: %s', value)
                     } else if (!$(this).hasClass('open')) { //open
                         $(this).addClass('open')
+                        $(this).find('+ form > input').focus()
                     } else {
                         $(document).trigger('click')
                     }

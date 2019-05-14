@@ -1,11 +1,20 @@
 @import "mixin";
 @import "rem";
 
-$nav-bgcolor: #fff!default;
-$nav-hover-bgColor: #fff!default;
-$nav-color: $color!default;
-$nav-hover-color: $main-color!default;
-$nav-hover-bgColor: #fff!default;
+$main-color: #409EFF!default;   //主色
+$color: #a1a1a1!default;        //常规文字
+
+$split-color: #eaeaea!default;   //边框颜色  
+
+//
+
+$nav-bgcolor: #fff!default; //菜单背景色
+$nav-color: $color!default;  //一级菜单文字色
+$nav-hover-color: $main-color!default; //一级菜单hover文字颜色
+$nav-hover-bgColor: transparent!default; //一级菜单hover背景色
+
+$nav-deep-color: #a1a1a1!default;  //
+$nav-light-color: #bfbfbf!default; //
 
 
 html {
@@ -31,6 +40,10 @@ a, a:hover, a:visited, a:focus {
 body { // 未来 删除该部分 style 中的base.css设置
 
     header {
+        .icon-arrowdropdown {
+            color: $nav-light-color;
+        }
+
         &, a {
             color: $color;
         }

@@ -6,8 +6,13 @@ $mobile-left-width: 260px;
 $mobile-header-bar-height: 50px;
 $mobole-menu-item-padding: 15px;
 $mobile-header-bgcolor: $nav-bgcolor!default; //指明`!default`才能被覆盖；没有default的变量，不不受到引用顺序的影响，直接覆盖
-$mobile-header-split-color: #EBEBEB!default;
 $mobile-header-bgcolor2: $nav-bgcolor2!default;
+$mobile-header-split-color: $split-color!default;
+
+
+$mobile-header-item-bgcolor1: #f9fafc!default;
+$mobile-header-item-bgcolor2: #f9fafc!default;
+$mobile-header-item-bgcolor3: #f9fafc!default;
 
 body {
 
@@ -108,6 +113,7 @@ body {
                 height: 100%;
                 @include rem(width, 60px);
                 text-align: center;
+                // color: $nav-deep-color;
                 .icon-search {
                     @include rem(font-size, 20px);    
                 }
@@ -118,6 +124,7 @@ body {
                 @include rem(padding, 10px);
                 @include rem(width, $ham-width);
                 display: block;
+                // color: $nav-deep-color;
 
                 .drawer-hamburger-icon {
                     @include transition(transform);
@@ -209,47 +216,93 @@ body {
             height: 100%;
             overflow: auto;
             .menu-items {
+                // background-color: blue;
                 li {
                     $li-padding-width: 15px;
 
                     position: relative;
                     overflow: hidden;
                     
-                    @include rem(padding, 0 $li-padding-width);
+                    // @include rem(padding, 0 $li-padding-width);
 
                     a {
                         display: block;
+                        @include rem(padding, 0 $li-padding-width);
+
                         @include rem(line-height, 50px);
-                        border-bottom: 1px solid $mobile-header-split-color;
+                        // border-bottom: 1px solid $mobile-header-split-color;
                         @include ellipsis();
-                        @include rem(padding-right, 30px);
+                        // @include rem(padding-right, 30px);
+                        &:hover {
+                             background: $mobile-header-item-bgcolor1;
+                        }
                     }
 
                     .icon-arrowdropdown {
                         @include transition();
                         position: absolute;
-                        @include rem(right, $li-padding-width);
+                        // @include rem(right, $li-padding-width);
                         @include transform(rotate(-90deg))
+                    }
+
+                    &.menu-nav-item {
+                        &.dropdown .dropdown >  a {
+                            @include rem(padding-left, $li-padding-width * 2);
+
+                            + .sub-menu a {
+                                @include rem(padding-left, $li-padding-width * 3);
+                            }
+                        }
+                    }
+
+                    &.menu-nav-item.open { //
+                        background: $mobile-header-item-bgcolor1;
+
+                        .open {
+            
+                            background: $mobile-header-item-bgcolor2;
+
+                            .sub-menu {
+                                background: $mobile-header-item-bgcolor3;
+                            }
+                        }
                     }
 
 
                     &.open {
-                        & > a .icon-arrowdropdown {
+
+                        &.dropdown > a {
+                            // @include rem(padding-left, $li-padding-width * 2);
+                            // color: black;
+                        }
+
+                        & > a  .icon-arrowdropdown {
                             @include transform(rotate(0))
                         }
                     }
+
+
                 }
 
                 .sub-menu {
                     display: none;
                 }
+
             }
         }
         .mobile-header-info {
             @include rem(padding, 15px 0);
 
-            .m-language span {
-                @include rem(margin-right, 5px);
+            .m-language  {
+                
+                span {
+                    color: $nav-deep-color; 
+                    @include rem(margin-right, 5px);    
+                }
+
+                .iconfont {
+                    color: $nav-light-color; 
+                }
             }
             
             .profile {
@@ -284,7 +337,11 @@ body {
                              @include rem(margin-right, 8px);
                         }
                     }
+                    .iconfont {
+                        color: $nav-light-color;
+                    }
                     span {
+                        color: $nav-deep-color;
                         position: relative;
                         top: -2px;
                         @include rem(left, 4px);
@@ -314,8 +371,15 @@ body {
                     @include rem(line-height, $mobile-header-bar-height); 
                     @include rem(padding, 0 15px);
                     border-bottom: 1px solid $mobile-header-split-color;
+                    text-align: center;
+
+                    // &, a {
+                    //     color: $nav-deep-color;    
+                    // }
+                    
                     .icon-back {
                         line-height: 1;
+                        color: $nav-deep-color;
                     }
                 }
 

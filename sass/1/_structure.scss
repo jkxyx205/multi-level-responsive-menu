@@ -32,16 +32,22 @@ $header-top-height: 0;
                 overflow: hidden;
             }
             
-            $width: 30px;
-            @include operator-bar-1($menu-nav-height, $width, 15px);
+            $width: 24px;
+            @include operator-bar-1($menu-nav-height, $width, 12px);
             
             @include logo($menu-nav-height);
 
-            .operator-bar-1 > li > a {
-                
-                &, &:hover, &:visited {
-                    color: $nav-color;
-                    border-color: $nav-color;
+            .operator-bar-1 > li {
+
+                &.search input {
+                    border-color: $nav-light-color;
+                }
+
+                & > a {
+                    &, &:hover, &:visited {
+                        color: $nav-light-color;
+                        border-color: $nav-light-color;
+                    }
                 }
             }
         }
