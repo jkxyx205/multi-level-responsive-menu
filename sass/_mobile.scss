@@ -227,8 +227,8 @@ body {
 
                     a {
                         display: block;
-                        @include rem(padding, 0 $li-padding-width);
-
+                        @include rem(padding, 0 $li-padding-width * 2 0 $li-padding-width);
+                        // max-width: calc(100% - #{rem($li-padding-width)});
                         @include rem(line-height, 50px);
                         // border-bottom: 1px solid $mobile-header-split-color;
                         @include ellipsis();
@@ -241,7 +241,7 @@ body {
                     .icon-arrowdropdown {
                         @include transition();
                         position: absolute;
-                        // @include rem(right, $li-padding-width);
+                        @include rem(right, $li-padding-width);
                         @include transform(rotate(-90deg))
                     }
 
@@ -270,12 +270,6 @@ body {
 
 
                     &.open {
-
-                        &.dropdown > a {
-                            // @include rem(padding-left, $li-padding-width * 2);
-                            // color: black;
-                        }
-
                         & > a  .icon-arrowdropdown {
                             @include transform(rotate(0))
                         }
