@@ -13,9 +13,11 @@ body {
 
     &.mobile { //js添加header的mobile样式，解决768临界值header width动画不流畅的问题
         header {
-            @include transition(width);
+            // @include transition(width);   .side-bar => overflow:hidden 
         }
     }
+
+
 
     $ham-width: 45px;
 
@@ -32,14 +34,20 @@ body {
         }
 
         header {
-            position: relative;
-            overflow: hidden;
-            float: left;
-            width: 0;
             height: 100%;
+
+            .side-bar {
+                // position: relative;
+                overflow: hidden;
+                // float: left;
+                width: 0;
+                max-width: calc(100% - #{rem($ham-width)});
+                height: 100%;
+                white-space: nowrap;
+                @include linear-gradient($mobile-header-bgcolor, $mobile-header-bgcolor2);
+                @include transition(width);
+            }
             
-            white-space: nowrap;
-            @include linear-gradient($mobile-header-bgcolor, $mobile-header-bgcolor2);
 
             .nav {
                 height: calc(100% - 4.7rem);
@@ -57,6 +65,7 @@ body {
 
         .content {
             position: absolute;
+            top: 0;
             left: 0;
             @include transition();
             background: #fff;
@@ -64,7 +73,7 @@ body {
         }
 
         .mobile-header-bar {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             @include rem(height, $mobile-header-bar-height);
@@ -148,6 +157,7 @@ body {
                 border: none;
                 outline: none;
                 z-index: 999;
+                border-radius: 0;
                 @include rem(top, -$mobile-header-bar-height);
                 padding: 0 5px;
                 @include transition(top);
@@ -160,9 +170,8 @@ body {
         }
 
         &.open {
-            header {
+            .side-bar {
                 width: $mobile-left-width;
-                max-width: calc(100% - #{rem($ham-width)});
             }
 
             .ham {
