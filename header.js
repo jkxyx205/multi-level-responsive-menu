@@ -12,9 +12,11 @@
   var $menuNavPrev = $('#menu-nav-prev')
   var $menuNavNext = $('#menu-nav-next')
   var $nav = $('#nav')
+  var $menuItem = $('#menu-items')
   var $searchBtnTrigger1 = $('#searchBtn-trigger-1')
- 
   var $dropdownLi = $('header li.dropdown > a');
+
+  //768窗口切换阀值
   var handleModeChanging = false
 
   function isMobileMode () {
@@ -45,9 +47,7 @@
                 totalWidth += $(this).width()
             })
 
-
-
-            function initEvent() {
+            function initOnce() {
 
                 // 阻止事件被document捕获
                 $('.search').on('click', function(e) {
@@ -57,7 +57,6 @@
                 // search1
                 var $search = $('#searchInput-1')
                 var $searchBtnTrigger1 =  $('#searchBtn-trigger-1')
-
                 
                 $searchBtnTrigger1.on('click', function(e) {
                     var value = $search.val()   
@@ -71,18 +70,14 @@
                     }
                 })
 
-
-
                 $(document).on('click', function(e) {
                     //search btn-1
                     $searchBtnTrigger1.removeClass('open')
                    
                 })
-
             }
 
-
-            initEvent()
+            initOnce()
 
             function MenuFixedReigster () {
                     this.init = function () {
@@ -138,8 +133,6 @@
                         if (resizeWaiting)
                             return
 
-
-
                         resizeWaiting = true
 
                         if (resizeTimer) clearTimeout(resizeTimer)
@@ -150,16 +143,6 @@
                                 return
 
                             initPageInfo()
-
-                            // if (totalWidth < pageWidth) {//一页显示得下
-                            //     return
-                            // }
-
-                            // if (offsetCursor > minOffset) {
-                            //     offsetCursor = minOffset
-                            // } else if (offsetCursor < maxOffset) {
-                            //     offsetCursor = maxOffset
-                            // }
 
                             moveItem()
                             resizeWaiting = false
@@ -172,21 +155,11 @@
 
                         $menuNavNext.on('click', function() {
                             offsetCursor = offsetCursor - pageWidth
-
-                            // if (offsetCursor < maxOffset ) { //最后一页
-                            //     offsetCursor = maxOffset
-                            // } 
-
                             moveItem()
                         })
 
                         $menuNavPrev.on('click', function() {
                             offsetCursor = offsetCursor + pageWidth
-
-                            // if (offsetCursor > minOffset ) { //第一页
-                            //     offsetCursor = minOffset
-                            // } 
-
                             moveItem()
                         })
 
@@ -203,22 +176,14 @@
                             offsetCursor = maxOffset
                         }
 
-                        // if (totalWidth < pageWidth) {//一页显示得下
-                        //     offsetCursor = minOffset
-                        // }
-
                         $firstItem.css('margin-left', offsetCursor)
                         handleArrowIcon()
                     }
 
                     function initPageInfo () {
-                         pageWidth = $('#menu-items').width() //一页的宽度
+                         pageWidth = $menuItem.width() //一页的宽度
                          maxOffset = pageWidth - totalWidth
                          maxOffset = maxOffset < 0 ? maxOffset : 0
-
-                         console.log("totalWidth: " + totalWidth)
-                         console.log("pageWidth: " + pageWidth)
-                         console.log("maxOffset: " + maxOffset)
                     }
 
                     function handleArrowIcon () {
@@ -239,9 +204,7 @@
                         $menuNavNext.removeClass('show')
                         $menuNavPrev.removeClass('show')
                     }
-
                }
-
 
         this.init = function () {
             menuFixedReigster.init()
@@ -258,6 +221,7 @@
 
     this.mobile = function() {
         console.log('init mobile instance')
+        
         function initOnce() {
 
             $('#ham').on('click', function() {

@@ -9,20 +9,17 @@ $mobile-header-bgcolor: $nav-bgcolor!default; //指明`!default`才能被覆盖�
 $mobile-header-bgcolor2: $nav-bgcolor2!default;
 $mobile-header-split-color: $split-color!default;
 
-
 $mobile-header-item-bgcolor1: #f9fafc!default;
 $mobile-header-item-bgcolor2: #f9fafc!default;
 $mobile-header-item-bgcolor3: #f9fafc!default;
 
 body {
 
-    &.mobile { //js添加header的mobile样式，解决768临界值header width动画不流畅的问题
-        header {
-            // @include transition(width);   .side-bar => overflow:hidden 
-        }
-    }
-
-
+    // &.mobile { //js添加header的mobile样式，解决768临界值header width动画不流畅的问题,后来别.side-bar => overflow:hidden css方式解决
+    //     header {
+    //         // @include transition(width);   
+    //     }
+    // }
 
     $ham-width: 45px;
 
@@ -168,7 +165,8 @@ body {
                 @include rem(top, -$mobile-header-bar-height);
                 padding: 0 5px;
                 @include transition(top);
-                @include rem(font-size, 16px);    
+                @include rem(font-size, 16px);
+                color: $color; 
 
                 &.show {
                     top: 0;
@@ -216,23 +214,17 @@ body {
             height: 100%;
             overflow: auto;
             .menu-items {
-                // background-color: blue;
+                
                 li {
                     $li-padding-width: 15px;
 
                     position: relative;
                     overflow: hidden;
-                    
-                    // @include rem(padding, 0 $li-padding-width);
 
                     a {
                         display: block;
                         @include rem(padding, 0 $li-padding-width * 2 0 $li-padding-width);
-                        // max-width: calc(100% - #{rem($li-padding-width)});
-                        @include rem(line-height, 50px);
-                        // border-bottom: 1px solid $mobile-header-split-color;
                         @include ellipsis();
-                        // @include rem(padding-right, 30px);
                         &:hover {
                              background: $mobile-header-item-bgcolor1;
                         }
@@ -268,14 +260,11 @@ body {
                         }
                     }
 
-
                     &.open {
                         & > a  .icon-arrowdropdown {
                             @include transform(rotate(0))
                         }
                     }
-
-
                 }
 
                 .sub-menu {
@@ -367,10 +356,6 @@ body {
                     border-bottom: 1px solid $mobile-header-split-color;
                     text-align: center;
 
-                    // &, a {
-                    //     color: $nav-deep-color;    
-                    // }
-                    
                     .icon-back {
                         line-height: 1;
                         color: $nav-deep-color;
@@ -382,7 +367,6 @@ body {
                     @include rem(line-height, 50px);
                     text-align: center; 
                 }
-
             }
         }
 
