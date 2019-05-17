@@ -224,6 +224,7 @@ body {
                     a {
                         display: block;
                         @include rem(padding, 0 $li-padding-width * 2 0 $li-padding-width);
+                        @include rem(line-height, 50px);
                         @include ellipsis();
                         &:hover {
                              background: $mobile-header-item-bgcolor1;

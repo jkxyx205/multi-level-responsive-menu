@@ -4,8 +4,8 @@
 // $mobile-header-bgcolor: red!default;
 // $mobile-header-split-color: blue!default;
 
-$header-top-height: 0;
-$header-split-color: #eaeaea; //
+$header-top-height: 48px;
+
 
 @import "../mobile";
 @import "../pc";
@@ -16,14 +16,33 @@ $header-split-color: #eaeaea; //
 }
 
 @media (min-width: 769px) { //pc端
+body {    
     header {
+        
         &.fixed {
             top:  -$header-top-height;
         }
 
+        .top-container {
+            background: $bar-bgcolor;
+            &, a {
+                color: $bar-color;
+            }
+            a:hover {
+                color: $bar-hover-color; 
+            }
+        }
+
+        .tool-bar {
+            height: 100%;
+            @include operator-bar-2($header-top-height, 20px); 
+            @include contact-info2($header-top-height);
+        }
+
         .nav {
-            
-            @include flex();    
+            .container {
+                @include flex(); 
+            }
 
             .menu-container {
                 @include flex-1();
@@ -31,25 +50,20 @@ $header-split-color: #eaeaea; //
                 overflow: hidden;
             }
             
-            $width: 30px;
-            @include operator-bar-1(64px, $width, 15px);
-            @include logo();
-
-            .tool-container {
-               
-                // padding-top: calc(#{($menu-nav-height - $width)} / 2)
-                
+            $width: 24px;
+            
+            @include operator-bar-2($menu-nav-height, 12px);
+            @include logo($menu-nav-height);
+        }
+        &.search-open {
+            .operator-bar-2 li.search form {
+                @include opacity(1);   
             }
         }
-        .menu-items {
-            .sub-menu {
-                border-top: 1px solid $main-color;
-            }
-        }
-
     }
 
     .content {
-        padding-top: $header-top-height;
+        padding-top: $menu-nav-height;
     }
+}
 }

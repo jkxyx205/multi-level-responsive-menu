@@ -17,6 +17,8 @@ $header-top-height: 0;
 
 @media (min-width: 769px) { //pc端
     header {
+        $width: 24px;
+        
         &.fixed {
             top:  -$header-top-height;
         }
@@ -32,7 +34,7 @@ $header-top-height: 0;
                 overflow: hidden;
             }
             
-            $width: 24px;
+            
             @include operator-bar-1($menu-nav-height, $width, 12px);
             
             @include logo($menu-nav-height);
@@ -45,12 +47,22 @@ $header-top-height: 0;
 
                 & > a {
                     &, &:hover, &:visited {
-                        color: $nav-light-color;
+                        color: $nav-deep-color;
                         border-color: $nav-light-color;
                     }
                 }
             }
         }
+
+        &.search-open {
+                    
+            #searchInput-1 {
+                padding-left: $width / 2;
+                width: 200px;
+                
+                background-color: #fff;
+            }
+        } 
     }
 
     .content {

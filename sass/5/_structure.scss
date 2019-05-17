@@ -1,11 +1,11 @@
 // $menu-nav-height: 64px;
-// $menu-nav-position: center;
+$menu-nav-position: center;
 
 // $mobile-header-bgcolor: red!default;
 // $mobile-header-split-color: blue!default;
 
-$header-top-height: 0;
-$header-split-color: #eaeaea; //
+$header-top-height: 128px;
+
 
 @import "../mobile";
 @import "../pc";
@@ -17,39 +17,106 @@ $header-split-color: #eaeaea; //
 
 @media (min-width: 769px) { //pc端
     header {
+        $width: 24px;
+
         &.fixed {
             top:  -$header-top-height;
         }
 
-        .nav {
+        .top-container {
+            height: $header-top-height;
+            border-bottom: 1px solid $split-color;
+            .container {
+                height: 100%;
+            }
+        }
+        .tool-bar {
+            height: 100%;
             
-            @include flex();    
+            @include operator-bar-2($menu-nav-height, 20px); 
+            @include flex();
+            @include flex-align-center();
+            @include logo($menu-nav-height);
+            @include contact-info();
+            @include share();
+
+            .logo {
+                @include flex-1();
+            }
+        }
+
+        .nav {
+            .container {
+                position: relative;
+                @include flex(); 
+            }
 
             .menu-container {
                 @include flex-1();
                 padding: 0px 30px;
                 overflow: hidden;
             }
-            
-            $width: 30px;
-            @include operator-bar-1(64px, $width, 15px);
-            @include logo();
 
-            .tool-container {
-               
-                // padding-top: calc(#{($menu-nav-height - $width)} / 2)
-                
+            #searchInput-1 {
+                @include opacity(0);
+                height: 0;
+                width: 0;
+                border:none;
+                outline: none;
+                @include transition(opacity);
             }
-        }
-        .menu-items {
-            .sub-menu {
-                border-top: 1px solid $main-color;
-            }
+            @include operator-bar-2($menu-nav-height, 12px);
         }
 
+        &.search-open {
+            .nav .operator-bar-2 > li.search {
+                position: absolute;
+                left: 15px;
+                z-index: 999;
+
+                .icon-search {
+                    font-size: 24px;
+                }
+            }
+
+            #searchInput-1 {
+                position: absolute;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                padding: 0 50px;
+                @include opacity(1);
+            }
+
+            .close {
+                position: relative;
+                height: $menu-nav-height;
+                width: $menu-nav-height / 2; 
+                cursor: pointer;
+
+                &:after, &:before {
+                    content: "";
+                    position: absolute;
+                    height: 50%;
+                    top: 25%;
+                    right: 50%;
+                    width: 1px;
+                    background: $nav-deep-color;
+                }
+
+                &:after {
+                    @include transform(rotate(45deg));
+                    @include css3-prefix(transform-origin, 100%);
+                } 
+                &:before {
+                    @include transform(rotate(-45deg));
+                    @include css3-prefix(transform-origin, 100%);;
+                }
+            }
+        }
     }
 
     .content {
-        padding-top: $header-top-height;
+        padding-top: $menu-nav-height;
     }
 }

@@ -17,20 +17,92 @@ $nav-bgcolor2: $nav-bgcolor!default;
 }
 
 // components
-@mixin operator-bar-1($height: 50px, $width: 30px, $margin-right: 15px) {
-  .operator-bar-1 { //搜索，登录注册，语言
-        @include floatLi($margin-right);
+@mixin operator-bar ($height: 50px, $margin-right: 15px)  {
+    @include floatLi($margin-right);
 
-        
-        & > li {
-            position: relative;
-            height: $height;
-            width: $width;
+    & > li {
+        position: relative;
+        height: $height;
 
-            .iconfont {
-                line-height: 1;
+        & > a {
+            display: inline-block;
+            text-align: center;
+        }
+
+        &.separator {
+            a, a:hover, a:visited {
+                color: $nav-light-color;
             }
+        } 
+        
+        &:hover {
+            & > .dropdown {
+                display: block;
+            }
+        }
 
+        &.search {
+            input {
+                color: $color;
+                outline: none;
+                border: none;
+            }
+        }
+       
+        .dropdown {
+            display: none;
+            position: absolute;
+            z-index: 999;
+            top: 100%;
+            border-radius: 3px;
+            @include box-shadow(0, 2px, 6px, 0px, rgba(0, 0, 0, .1));
+            @include center(horizontal);
+    
+            a {
+                color: $color;
+    
+                &:hover {
+                    color: $main-color;
+                }       
+            }     
+    
+            ul {
+                position: relative;
+                background-color: #fff;
+            }
+    
+            li {
+                line-height: 35px;
+                width: 100px;
+                padding: 0 15px;
+                text-align: center;
+            }
+            
+            $width: 10px;
+    
+            .arrow {
+                width: $width;
+                height: $width;
+                @include center(horizontal);
+                margin-left: -$width / 2;
+                top: calc(-#{$width} / 2);
+                @include transform(rotate(-45deg));
+                background-color: #fff;
+                @include box-shadow(0, 2px, 6px, 0px, rgba(0, 0, 0, .1));
+            }
+        }
+}
+}
+
+@mixin operator-bar-1($height: 50px, $width: 30px, $margin-right: 15px) {
+
+    .operator-bar-1 { //搜索，登录注册，语言
+      
+        @include operator-bar($height, $margin-right);
+
+        & > li {
+           
+            width: $width;
 
             & > a {
                 height: $width;
@@ -41,27 +113,20 @@ $nav-bgcolor2: $nav-bgcolor!default;
                 }
                 line-height: $width;
                 width: 100%;
-                display: inline-block;
-                text-align: center;
                 @include center(vertical);
             }
             
             &.search {
-
                 input {
                     right: 0;
                     @include center(vertical);
                     height: $width;
                     width: 100%;
-                    border-radius: 50%;
                     border: 1px solid $color;
                     border-radius: $width / 2;
                     text-align: left;
                     padding: 0 #{$width - 2px} 0 0;
-                    outline: none;
-                    color: $color;
-                    background: transparent;
-                    
+                    background: #fff;
                     @include transition(all);
                 }
 
@@ -69,84 +134,102 @@ $nav-bgcolor2: $nav-bgcolor!default;
                     position: absolute;
                     z-index: 2;
                     border-color: transparent;
-
-                    &.open {
-                    
-                        & + form > input {
-                            padding-left: $width / 2;
-                            width: 200px;
-                            
-                            background-color: #fff;
-                        }
-                    } 
-                }
-            }
-            
-            &:hover {
-                & > .dropdown {
-                    display: block;
-                }
-            }
-
-            .dropdown {
-                display: none;
-                position: absolute;
-                z-index: 999;
-                top: 100%;
-                border-radius: 3px;
-                @include box-shadow(0, 2px, 6px, 0px, rgba(0, 0, 0, .1));
-                @include center(horizontal);
-
-                a {
-                    color: $color;
-        
-                    &:hover {
-                        color: $main-color;
-                    }       
-                }     
-
-                ul {
-                    position: relative;
-                    background-color: #fff;
-                }
-
-                li {
-                    line-height: 35px;
-                    width: 100px;
-                    padding: 0 15px;
-                    text-align: center;
-                }
-                
-                $width: 10px;
-
-                .arrow {
-                    width: $width;
-                    height: $width;
-                    @include center(horizontal);
-                    margin-left: -$width / 2;
-                    top: calc(-#{$width} / 2);
-                    @include transform(rotate(-45deg));
-                    background-color: #fff;
-                    @include box-shadow(0, 2px, 6px, 0px, rgba(0, 0, 0, .1));
                 }
             }
         } 
-
-
     }
 }  
+
+// 登录 | 注册 中
+@mixin operator-bar-2($height: 50px, $margin-right: 15px) {
+    .operator-bar-2 { //搜索，登录注册，语言
+        @include operator-bar($height, $margin-right);
+        & > li {
+
+            & > a {
+                line-height: $height;
+                .icon-arrow-down {
+                    margin-left: 5px;
+                }
+            }
+
+            &.search {
+                form {
+                    position: absolute;
+                    right: 0;
+                    padding: 10px;
+                    background: $main-color;
+                    @include opacity(0);
+                    @include transition(opacity);
+                }
+
+                input {
+                    width: 260px;
+                    height: 30px;
+                    padding: 0 5px;
+                }
+
+                @at-root #searchBtn-trigger-1 {
+                    position: relative;
+                }
+            }
+        } 
+    }
+}
 
 @mixin logo($height: 100%) {
     .logo {
         display: inline-block;
         padding: $height * .1;
         height: $height;
+        text-align: center;
         img {
             height: 100%;
             max-width: 2.4 * $height;
         }
     }
 } 
+
+@mixin contact-info() {
+    .contact-info {
+        .contact-info-tel {
+            position: relative;
+            color: $main-color;
+            font-size: 1.6em;
+
+            .icon-dianhua {
+                position: absolute;
+                left: -1.2em;
+                font-size: 1em;
+            }
+
+        }
+
+        .contact-info-email {
+            font-size: 1.2em;
+        }
+    }
+}
+
+@mixin contact-info2($height,$margin-right: 15px) {
+    .contact-info2 {
+        line-height: $height;
+        @include floatLi($margin-right); 
+        .iconfont {
+            line-height: 1;
+            margin-right: 5px;
+        }
+    }
+}
+
+@mixin share() {
+   .share {
+        @include floatLi(20px);
+        .iconfont {
+            font-size: 16px;
+        }
+   } 
+}
 
 body {
     @media (min-width: 769px) { //pc端
@@ -165,9 +248,18 @@ body {
             background-color: #fff;
             z-index: 999;
 
+            .top-container {
+                &, .iconfont {
+                   font-size: 12px;
+                }
+            }
+
             .nav {
                 height: $menu-nav-height;
                 @include linear-gradient($nav-bgcolor, $nav-bgcolor2);
+                &, .iconfont {
+                    font-size: 14px;
+                 }
             }
 
             .menu-nav {

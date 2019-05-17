@@ -1,10 +1,10 @@
 // $menu-nav-height: 64px;
-// $menu-nav-position: center;
+$menu-nav-position: center;
 
 // $mobile-header-bgcolor: red!default;
 // $mobile-header-split-color: blue!default;
 
-$header-top-height: 0;
+$header-top-height: 128px;
 
 
 @import "../mobile";
@@ -17,13 +17,32 @@ $header-top-height: 0;
 
 @media (min-width: 769px) { //pc端
     header {
+        $width: 24px;
+
         &.fixed {
             top:  -$header-top-height;
         }
 
+        .top-container {
+            height: $header-top-height;
+        }
+        .tool-bar {
+            height: 100%;
+            @include operator-bar-2($menu-nav-height, 20px); 
+            @include flex();
+            @include flex-align-center();
+            @include logo($menu-nav-height);
+            @include contact-info();
+
+            .logo {
+                @include flex-1();
+            }
+        }
+
         .nav {
-            
-            @include flex();    
+            .container {
+                @include flex(); 
+            }
 
             .menu-container {
                 @include flex-1();
@@ -31,25 +50,17 @@ $header-top-height: 0;
                 overflow: hidden;
             }
             
-            $width: 30px;
-            @include operator-bar-1(64px, $width, 15px);
-            @include logo();
-
-            .tool-container {
-               
-                // padding-top: calc(#{($menu-nav-height - $width)} / 2)
-                
-            }
-        }
-        .menu-items {
-            .sub-menu {
-                border-top: 1px solid $main-color;
-            }
+            @include operator-bar-2($menu-nav-height, 12px);
         }
 
+        &.search-open {
+            .operator-bar-2 li.search form {
+                @include opacity(1);   
+            }
+        }
     }
 
     .content {
-        padding-top: $header-top-height;
+        padding-top: $menu-nav-height;
     }
 }

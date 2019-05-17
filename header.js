@@ -14,7 +14,8 @@
   var $nav = $('#nav')
   var $menuItem = $('#menu-items')
   var $searchBtnTrigger1 = $('#searchBtn-trigger-1')
-  var $dropdownLi = $('header li.dropdown > a');
+  var $dropdownLi = $('header li.dropdown > a')
+  var $search = $('#searchInput-1')
 
   //768窗口切换阀值
   var handleModeChanging = false
@@ -50,21 +51,19 @@
             function initOnce() {
 
                 // 阻止事件被document捕获
-                $('.search').on('click', function(e) {
+                $('.search, #searchInput-1').on('click', function(e) {
                     e.stopPropagation()
                 })
 
                 // search1
-                var $search = $('#searchInput-1')
-                var $searchBtnTrigger1 =  $('#searchBtn-trigger-1')
                 
                 $searchBtnTrigger1.on('click', function(e) {
                     var value = $search.val()   
-                    if ($(this).hasClass('open') && value) { //search
+                    if ($header.hasClass('search-open') && value) { //search
                         console.log('search by keywords: %s', value)
-                    } else if (!$(this).hasClass('open')) { //open
-                        $(this).addClass('open')
-                        $(this).find('+ form > input').focus()
+                    } else if (!$header.hasClass('search-open')) { //open
+                        $header.addClass('search-open')
+                        $search.focus()
                     } else {
                         $(document).trigger('click')
                     }
@@ -72,7 +71,7 @@
 
                 $(document).on('click', function(e) {
                     //search btn-1
-                    $searchBtnTrigger1.removeClass('open')
+                    $header.removeClass('search-open')
                    
                 })
             }
