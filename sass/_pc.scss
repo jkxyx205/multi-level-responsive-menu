@@ -126,11 +126,11 @@ $nav-bgcolor2: $nav-bgcolor!default;
                     border-radius: $width / 2;
                     text-align: left;
                     padding: 0 #{$width - 2px} 0 0;
-                    background: #fff;
+                    // background: transparent; 
                     @include transition(all);
                 }
 
-                @at-root #searchBtn-trigger-1 {
+                @at-root #searchBtn-trigger {
                     position: absolute;
                     z-index: 2;
                     border-color: transparent;
@@ -169,7 +169,7 @@ $nav-bgcolor2: $nav-bgcolor!default;
                     padding: 0 5px;
                 }
 
-                @at-root #searchBtn-trigger-1 {
+                @at-root #searchBtn-trigger {
                     position: relative;
                 }
             }
@@ -239,8 +239,9 @@ body {
 
 
         header {
+
             @include box-shadow(0, 2px, 6px, 0px, rgba(0, 0, 0, .1));
-                
+            
             position: fixed;
             top: 0;
             width: 100%;

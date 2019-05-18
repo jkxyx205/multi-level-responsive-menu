@@ -826,13 +826,13 @@ body header .mobile-header-bar a:focus {
     transition: all 0.5s ease;
   }
   /* line 68, ../../../sass/_pc.scss */
-  #searchBtn-trigger-1 {
+  #searchBtn-trigger {
     position: absolute;
     z-index: 2;
     border-color: transparent;
   }
   /* line 75, ../../../sass/_pc.scss */
-  #searchBtn-trigger-1.open + form > input {
+  #searchBtn-trigger.open + form > input {
     padding-left: 15px;
     width: 200px;
     background-color: #fff;

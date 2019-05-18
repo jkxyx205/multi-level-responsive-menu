@@ -13,9 +13,9 @@
   var $menuNavNext = $('#menu-nav-next')
   var $nav = $('#nav')
   var $menuItem = $('#menu-items')
-  var $searchBtnTrigger1 = $('#searchBtn-trigger-1')
+  var $searchBtnTrigger1 = $('#searchBtn-trigger')
   var $dropdownLi = $('header li.dropdown > a')
-  var $search = $('#searchInput-1')
+  var $search = $('#searchInput')
 
   //768窗口切换阀值
   var handleModeChanging = false
@@ -51,7 +51,7 @@
             function initOnce() {
 
                 // 阻止事件被document捕获
-                $('.search, #searchInput-1').on('click', function(e) {
+                $('.search, #searchInput').on('click', function(e) {
                     e.stopPropagation()
                 })
 
