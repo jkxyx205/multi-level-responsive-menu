@@ -167,11 +167,16 @@ body {
                 @include transition(top);
                 @include rem(font-size, 16px);
                 color: $color; 
-
+                @include linear-gradient($nav-bgcolor, $nav-bgcolor2);
+    
+                color: $nav-color;
                 &.show {
                     top: 0;
                 }
+
+                @include placeholder($nav-color);
             }
+
         }
 
         &.open {

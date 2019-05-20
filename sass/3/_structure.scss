@@ -61,6 +61,6 @@ $header-top-height: 128px;
     }
 
     .content {
-        padding-top: $menu-nav-height;
+        padding-top: $menu-nav-height + $header-top-height;
     }
 }

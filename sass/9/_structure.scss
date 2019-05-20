@@ -37,11 +37,14 @@ $header-top-height: 128px;
             
             @include operator-bar-2($menu-nav-height, 20px, $deep-color, $light-color); 
             @include logo($menu-nav-height);
-            @include search-fixed();
+            @include search-fixed($width: 300px);
 
-            .logo {
+        
+            .search-container {
                 @include flex-1();
+                text-align: center;
             }
+            
 
             #searchBtn-trigger:hover {
                 i {

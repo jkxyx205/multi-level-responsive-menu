@@ -44,6 +44,7 @@ body {
 
             .nav {
                 .container {
+                    position: relative;
                     @include flex(); 
                 }
 
@@ -57,16 +58,73 @@ body {
                 
                 @include operator-bar-2($menu-nav-height, 12px, $nav-deep-color, $nav-light-color);
                 @include logo($menu-nav-height);
-            }
-            &.search-open {
-                .operator-bar-2 li.search form {
-                    @include opacity(1);   
+
+                #searchInput {
+                    @include opacity(0);
+                    height: 0;
+                    width: 0;
+                    border:none;
+                    outline: none;
+                    @include transition(opacity);
                 }
             }
+
+            // &.search-open {
+            //     .operator-bar-2 li.search form {
+            //         @include opacity(1);   
+            //     }
+            // }
+
+            &.search-open {
+                .nav .operator-bar-2 > li.search {
+                    position: absolute;
+                    left: 15px;
+                    z-index: 999;
+
+                    .icon-search {
+                        font-size: 24px;
+                    }
+                }
+
+                #searchInput {
+                    position: absolute;
+                    left: 0;
+                    height: 100%;
+                    width: 100%;
+                    padding: 0 50px;
+                    @include opacity(1);
+                }
+
+                .close {
+                    position: relative;
+                    height: $menu-nav-height;
+                    width: $menu-nav-height / 2; 
+                    cursor: pointer;
+
+                    &:after, &:before {
+                        content: "";
+                        position: absolute;
+                        height: 50%;
+                        top: 25%;
+                        right: 50%;
+                        width: 1px;
+                        background: $nav-deep-color;
+                    }
+
+                    &:after {
+                        @include transform(rotate(45deg));
+                    } 
+                    &:before {
+                        @include transform(rotate(-45deg));
+                    }
+                }
+        }
+
+
         }
 
         .content {
-            padding-top: $menu-nav-height;
+            padding-top: $menu-nav-height + $header-top-height;
         }
     }
 }

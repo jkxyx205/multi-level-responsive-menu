@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" href="stylesheets/reset.css">
     <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
-    <link rel="stylesheet" href="https://at.alicdn.com/t/font_417789_tqhef4z1dn.css">
-    <link rel="stylesheet" href="stylesheets/4/1/1.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_417789_tagep8e589.css">
+    <link rel="stylesheet" href="stylesheets/9/1/1.css">
 </head>
 
 <body>
-    <header>
+    <header class="search-open always-open">
       <div class="side-bar">
         
        <div class="top-container">
@@ -50,34 +50,41 @@
              </div>
           </div>
           <div class="tool-bar pc-element">
-                <div class="tool-container">
-                        <ul class="operator-bar-2">
-                                <li>
-                                        <a href="#">登录</a>
-                                        <span class="separator">|</span>
-                                        <a href="#">注册</a>
-                                </li>
-                            <li>
-                                  <a href="#">中<i class="iconfont icon-arrow-down"></i></a>
-                                  <div class="dropdown">
-                                      <div class="arrow"></div>
-                                      <ul>
-                                          <li><a href="#">中文</a></li>
-                                          <li><a href="#">英文</a></li>
-                                          <li><a href="#">中文</a></li>
-                                          <li><a href="#">英文</a></li>
-                                      </ul>
-                                  </div>
-                            </li>
-                            
-                        </ul>
+            <a class="logo" href="#">
+                <img src="images/art365logo.png" alt="">
+                <!-- <img src="images/h.png" alt=""> -->
+            </a>
+            <div class="search-container">
+                  <div class="search-fixed search">
+                      <form action="/ss">
+                      <input type="text" class="search_value" required="" id="searchInput">
+                       <a href="javascript:;" id="searchBtn-trigger" type="submit" data-length="200" data-width="30px">
+                          <i class="iconfont icon-search"></i>                            
+                      </a>
+                  </form>
+                  </div>
             </div>
-            <div class="pull-right">
-                   <ul class="contact-info2">
-                       <li><i class="iconfont icon-address"></i><span>苏州工业园区</span></li>
-                       <li><i class="iconfont icon-dianhua"></i><span>400-888-288383</span></li>
-                       <li><i class="iconfont icon-youxiang"></i><span>123456@foxmail.com</span></li>
-                   </ul>
+            <div class="tool-container pc-element">
+                  <ul class="operator-bar-2">
+                          <li>
+                                  <a href="#">登录</a>
+                                  <span class="separator">|</span>
+                                  <a href="#">注册</a>
+                          </li>
+                      <li>
+                            <a href="#">中<i class="iconfont icon-arrow-down"></i></a>
+                            <div class="dropdown">
+                                <div class="arrow"></div>
+                                <ul>
+                                    <li><a href="#">中文</a></li>
+                                    <li><a href="#">英文</a></li>
+                                    <li><a href="#">中文</a></li>
+                                    <li><a href="#">英文</a></li>
+                                </ul>
+                            </div>
+                      </li>
+                      
+                  </ul>
             </div>
         </div>
         </div>
@@ -85,9 +92,6 @@
 
         <div class="nav" id="nav">
               <div class="container">
-                <a class="logo pc-element" href="#">
-                  <img src="images/art365logo.png" alt="">
-               </a>
               <div class="menu-container">
                   <div class="menu-nav">
                         <div class="menu-items-container">
@@ -139,21 +143,9 @@
                         
                   </div> 
               </div>
-              <div class="tool-container pc-element">
-                  <ul class="operator-bar-2">
-                      <li><div class="separator"><i class="iconfont icon-fenge"></i></div></li>
-                      <li class="search">
-                        <a href="javascript:;" id="searchBtn-trigger">
-                          <i class="iconfont icon-search"></i>
-                        </a>
-                        <form action="/ss">
-                           <input type="text" class="search_value" required="" id="searchInput">
-                        </form>
-                      </li>
-                  </ul>
-              </div>
               </div>
          </div>
+        
         </div>
         <div class="mobile-header-bar mobile-element">
                 <a class="ham pull-left" href="javascript:;" id="ham">

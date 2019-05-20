@@ -37,9 +37,9 @@ $header-top-height: 128px;
             
             @include operator-bar-2($menu-nav-height, 20px, $deep-color, $light-color); 
             @include logo($menu-nav-height);
-            @include share();
+            @include contact-info3();
 
-            .logo {
+            .contact-info3 {
                 @include flex-1();
             }
 
@@ -61,14 +61,22 @@ $header-top-height: 128px;
                 @include opacity(0);
                 height: 0;
                 width: 0;
+                background: transparent;
                 border:none;
                 outline: none;
                 @include transition(opacity);
+
+                @include placeholder($nav-color);
+
             }
             @include operator-bar-2($menu-nav-height, 12px, $nav-deep-color, $nav-light-color);
         }
 
         &.search-open {
+            .menu-container {
+                @include opacity(0);
+            }
+
             .nav .operator-bar-2 > li.search {
                 position: absolute;
                 left: 15px;

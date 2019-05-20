@@ -2,6 +2,7 @@
 
 $menu-nav-height: 64px!default;
 $menu-nav-position: right!default;
+
 $nav-bgcolor2: $nav-bgcolor!default;
 
 /*
@@ -155,6 +156,10 @@ $nav-bgcolor2: $nav-bgcolor!default;
 
             & > a {
                 color: $deepColor;
+
+                .icon-arrow-down {
+                    margin-left: 5px;
+                }
             }
 
             & > .separator, & > a .icon-arrow-down {
@@ -165,9 +170,7 @@ $nav-bgcolor2: $nav-bgcolor!default;
 
             // & > a, & > .seperator {
             //     line-height: $height;
-            //     .icon-arrow-down {
-            //         margin-left: 5px;
-            //     }
+           
             //     color: $deepColor;
             // }
 
@@ -250,11 +253,36 @@ $nav-bgcolor2: $nav-bgcolor!default;
     }
 }
 
-@mixin search-container($height: 30px, $width: 200px, $padding: 1px) {
-   .search-container {
+@mixin contact-info3() {
+    .contact-info3 {
+        line-height: 1.8;
+        padding-left: 2em;
+
+        .contact-info-tel,
+        .contact-info-email {
+            position: relative;
+            font-size: 1.2em;
+            color: $deep-color;
+
+            .iconfont {
+                position: absolute;
+                color: $light-color;
+                font-size: 1.2em;
+                left: -1.2em;
+                top: -.1em;
+            }
+        }
+    }
+}
+
+
+
+@mixin search-fixed($height: 30px, $width: 200px, $padding: 1px) {
+    
+   .search-fixed {
+        display: inline-block;
         background: $main-color;
         padding: $padding;
-
         input {
             float: left;
             border: none;

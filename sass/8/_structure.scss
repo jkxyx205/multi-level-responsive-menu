@@ -1,0 +1,81 @@
+$menu-nav-height: 114px;
+// $menu-nav-position: center;
+
+// $mobile-header-bgcolor: red!default;
+// $mobile-header-split-color: blue!default;
+
+$header-top-height: 48px;
+$empty-height: 30px;
+
+
+@import "../mobile";
+@import "../pc";
+
+
+@media (min-width: 768px) { //mobile端
+    
+}
+
+@media (min-width: 769px) { //pc端
+body {    
+    header {
+            $width: 24px;
+        
+            &.fixed {
+                top:  -$header-top-height;
+            }
+
+            .top-container {
+                border-bottom: 1px solid $split-color;
+                @include operator-bar-2($header-top-height, 20px, $nav-deep-color, $nav-light-color);
+            }
+
+            .empty-height {
+                    height: $empty-height;
+            }
+
+            .nav {
+
+                .container {
+                    position: relative;
+                    @include flex(); 
+                }
+
+                .menu-container {
+                    @include flex-1();
+                    padding: 0px 30px;
+                    overflow: hidden;
+                }
+                
+                @include operator-bar-1($menu-nav-height, $width, 12px, $nav-deep-color, $nav-light-color);
+                @include logo($menu-nav-height);
+
+                .logo {
+                    position: relative;
+                    background: $main-color;
+                    margin-top: 10px;
+                }
+                
+                #searchInput {
+                   border-radius: 0!important;
+                   padding: 0 5px!important;
+                   @include opacity(0);
+                }
+            }
+
+            &.search-open {
+                    
+                #searchInput {
+                    @include opacity(1);
+                    width: 200px;
+                    border: 1px solid $light-color!important;
+                }
+            } 
+
+        }
+
+        .content {
+            padding-top: $menu-nav-height + $empty-height + $header-top-height;
+        }
+    }
+}
