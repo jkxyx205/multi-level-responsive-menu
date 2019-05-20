@@ -18,10 +18,10 @@ $header-split-color: #eaeaea; // 分割线颜色
 @media (min-width: 769px) { //pc端
     header {
         $width: 24px;
+        
         &.fixed {
             top:  -$header-top-height;
         }
-
 
         .logo-bar {
             position: relative;
@@ -38,17 +38,14 @@ $header-split-color: #eaeaea; // 分割线颜色
            @include operator-bar-1(64px, $width, 30px);
 
            .operator-bar-1 {
-               li > a {
-                border-color: $color;
-               }
 
                .icon-arrow-down {
-                 left: $width + 2px;
-                 @include center(vertical);
+                   left: $width + 2px;
+                   @include center(vertical);
                }
 
                .login .icon-arrow-down {
-                left: $width + 4px;
+                  left: $width + 4px;
                }
 
                &.right-side {

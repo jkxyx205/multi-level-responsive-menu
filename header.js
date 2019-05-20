@@ -71,7 +71,8 @@
 
                 $(document).on('click', function(e) {
                     //search btn-1
-                    $header.removeClass('search-open')
+                    if (!$header.hasClass('always-open'))
+                        $header.removeClass('search-open')
                    
                 })
             }

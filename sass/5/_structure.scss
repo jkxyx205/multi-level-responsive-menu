@@ -10,7 +10,6 @@ $header-top-height: 128px;
 @import "../mobile";
 @import "../pc";
 
-
 @media (min-width: 768px) { //mobile端
     
 }
@@ -33,16 +32,17 @@ $header-top-height: 128px;
         .tool-bar {
             height: 100%;
             
-            @include operator-bar-2($menu-nav-height, 20px); 
             @include flex();
             @include flex-align-center();
+            
+            @include operator-bar-2($menu-nav-height, 20px, $deep-color, $light-color); 
             @include logo($menu-nav-height);
-            @include contact-info();
             @include share();
 
             .logo {
                 @include flex-1();
             }
+
         }
 
         .nav {
@@ -65,7 +65,7 @@ $header-top-height: 128px;
                 outline: none;
                 @include transition(opacity);
             }
-            @include operator-bar-2($menu-nav-height, 12px);
+            @include operator-bar-2($menu-nav-height, 12px, $nav-deep-color, $nav-light-color);
         }
 
         &.search-open {

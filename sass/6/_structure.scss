@@ -25,39 +25,41 @@ $header-top-height: 128px;
 
         .top-container {
             height: $header-top-height;
+            border-bottom: 1px solid $split-color;
+            .container {
+                height: 100%;
+            }
         }
         .tool-bar {
             height: 100%;
-            @include operator-bar-2($menu-nav-height, 20px); 
             @include flex();
             @include flex-align-center();
+            
+            @include operator-bar-2($menu-nav-height, 20px, $deep-color, $light-color); 
             @include logo($menu-nav-height);
-            @include contact-info();
+            @include search-container();
 
             .logo {
                 @include flex-1();
+            }
+
+            #searchBtn-trigger:hover {
+                i {
+                    color: #fff!important;
+                }
             }
         }
 
         .nav {
             .container {
-                @include flex(); 
+                position: relative;
             }
 
             .menu-container {
-                @include flex-1();
-                padding: 0px 30px;
                 overflow: hidden;
             }
-            
-            @include operator-bar-2($menu-nav-height, 12px, $nav-deep-color, $nav-light-color);
         }
 
-        &.search-open {
-            .operator-bar-2 li.search form {
-                @include opacity(1);   
-            }
-        }
     }
 
     .content {

@@ -35,7 +35,7 @@ $header-top-height: 0;
             }
             
             
-            @include operator-bar-1($menu-nav-height, $width, 12px);
+            @include operator-bar-1($menu-nav-height, $width, 12px, $nav-deep-color, $nav-light-color);
             
             @include logo($menu-nav-height);
 
@@ -46,8 +46,8 @@ $header-top-height: 0;
                 }
 
                 & > a {
-                    &, &:hover, &:visited {
-                        color: $nav-deep-color;
+                    &, &:hover, &:visited, & > i {
+                        color: $nav-deep-color!important;
                         border-color: $nav-light-color;
                     }
                 }
