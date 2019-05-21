@@ -46,25 +46,19 @@ body header .mobile-header-bar a {
   color: #fadfdc;
 }
 /* line 73, ../../../sass/_base.scss */
-body header .nav a:hover, body header .nav a:hover i, body header .nav a:hover span, body header .nav a:focus, body header .nav a:focus i, body header .nav a:focus span, body header .nav li.menu-nav-item:hover > a, body header .nav li.menu-nav-item:hover > a i, body header .nav li.menu-nav-item:hover > a span,
+body header .nav a:hover, body header .nav a:hover i, body header .nav a:hover span, body header .nav a:focus, body header .nav a:focus i, body header .nav a:focus span,
 body header .mobile-header-info a:hover,
 body header .mobile-header-info a:hover i,
 body header .mobile-header-info a:hover span,
 body header .mobile-header-info a:focus,
 body header .mobile-header-info a:focus i,
 body header .mobile-header-info a:focus span,
-body header .mobile-header-info li.menu-nav-item:hover > a,
-body header .mobile-header-info li.menu-nav-item:hover > a i,
-body header .mobile-header-info li.menu-nav-item:hover > a span,
 body header .mobile-header-bar a:hover,
 body header .mobile-header-bar a:hover i,
 body header .mobile-header-bar a:hover span,
 body header .mobile-header-bar a:focus,
 body header .mobile-header-bar a:focus i,
-body header .mobile-header-bar a:focus span,
-body header .mobile-header-bar li.menu-nav-item:hover > a,
-body header .mobile-header-bar li.menu-nav-item:hover > a i,
-body header .mobile-header-bar li.menu-nav-item:hover > a span {
+body header .mobile-header-bar a:focus span {
   color: #fff !important;
 }
 @media (min-width: 768px) {
@@ -364,7 +358,7 @@ body header .mobile-header-bar li.menu-nav-item:hover > a span {
   }
   /* line 242, ../../../sass/_mobile.scss */
   body .menu-nav .menu-items li a:hover {
-    background: #f9fafc;
+    background: #e6594c;
   }
   /* line 247, ../../../sass/_mobile.scss */
   body .menu-nav .menu-items li .icon-arrowdropdown {
@@ -391,15 +385,15 @@ body header .mobile-header-bar li.menu-nav-item:hover > a span {
   }
   /* line 264, ../../../sass/_mobile.scss */
   body .menu-nav .menu-items li.menu-nav-item.open {
-    background: #f9fafc;
+    background: #e6594c;
   }
   /* line 267, ../../../sass/_mobile.scss */
   body .menu-nav .menu-items li.menu-nav-item.open .open {
-    background: #f9fafc;
+    background: #d04334;
   }
   /* line 271, ../../../sass/_mobile.scss */
   body .menu-nav .menu-items li.menu-nav-item.open .open .sub-menu {
-    background: #f9fafc;
+    background: #bb3c2f;
   }
   /* line 278, ../../../sass/_mobile.scss */
   body .menu-nav .menu-items li.open > a .icon-arrowdropdown {
@@ -702,7 +696,7 @@ body header .mobile-header-bar li.menu-nav-item:hover > a span {
   }
   /* line 416, ../../../sass/_pc.scss */
   body header .menu-nav .menu-items-container .menu-items li.menu-nav-item.current > a, body header .menu-nav .menu-items-container .menu-items li.menu-nav-item:hover > a {
-    background: #ef948b;
+    background: #e6594c;
   }
   /* line 422, ../../../sass/_pc.scss */
   body header .menu-nav .menu-items-container .menu-items li.menu-nav-item.current > a {
