@@ -63,12 +63,17 @@ $header-top-height: 128px;
                 width: 0;
                 border:none;
                 outline: none;
+                background: transparent;
                 @include transition(opacity);
             }
             @include operator-bar-2($menu-nav-height, 12px, $nav-deep-color, $nav-light-color);
         }
 
         &.search-open {
+            .menu-container {
+                @include opacity(0);
+            }
+            
             .nav .operator-bar-2 > li.search {
                 position: absolute;
                 left: 15px;

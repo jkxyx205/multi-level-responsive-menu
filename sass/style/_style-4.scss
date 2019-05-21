@@ -10,7 +10,7 @@
 
             .second-sub-menu {
                 border-top: 1px solid $main-color;
-                margin-top: 34px;
+                margin-top: $menu-nav-height - 30px;
             }
 
 
@@ -28,11 +28,10 @@
 
                 }
 
-                &.current, &:hover {
-                    & > a {
-                        background: $main-color;
-                        color: #fff!important;
-                    }
+                &.current > a, &:hover > a, & > a:hover {
+                   &, i {
+                     color: #fff!important;
+                   }
                 }
 
             } 

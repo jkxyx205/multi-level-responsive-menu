@@ -21,7 +21,8 @@
                 width: $width;
                 height: $width;
                 border-radius: 50%;
-                bottom: 5px;
+                // bottom: 5px;
+                top:  $menu-nav-height / 2  + 20px;
                 background-color: $nav-hover-color;
             }
         }

@@ -6,9 +6,11 @@
     header {
        
       .menu-nav-item {
-        $top: 15px;
-        $left: 4px;
         $width: 10px;
+        $left: 4px;
+        $top: $menu-nav-height / 2 - $width - 5px;
+        
+       
 
         &:after, &:before {
             content: "";
@@ -42,14 +44,7 @@
                 bottom: $top;
             }
         }
-
-        
-
-        
-
       } 
-
-
 
     }
 }

@@ -363,9 +363,9 @@ body {
 
                         @include opacity(0);
 
-                        &:hover {
-                            color: $nav-hover-color;
-                        }
+                        // &:hover {
+                        //     color: $nav-hover-color;
+                        // }
 
                         &.show {
                             @include opacity(1);
@@ -413,7 +413,10 @@ body {
                                 }
 
                                 &.current, &:hover {
-                                    background: $nav-hover-bgColor;    
+                                    & > a {
+                                        background: $nav-hover-bgColor;        
+                                    }
+                                    
                                 }
 
                                 &.current > a {
