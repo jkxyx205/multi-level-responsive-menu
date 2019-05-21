@@ -1,0 +1,31 @@
+@media (min-width: 768px) { //mobile端
+    
+}
+
+@media (min-width: 769px) { //pc端
+    header {
+       
+      .menu-nav-item {
+        $width: 5px;
+
+        position: relative;
+
+        &:after{
+            content: "";
+            @include center(horizontal);
+        }
+
+        &.current, &:hover {
+           
+            &:after {
+                width: $width;
+                height: $width;
+                border-radius: 50%;
+                bottom: 5px;
+                background-color: $nav-hover-color;
+            }
+        }
+      } 
+
+    }
+}

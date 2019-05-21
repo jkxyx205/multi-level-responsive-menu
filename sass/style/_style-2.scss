@@ -1,0 +1,55 @@
+@media (min-width: 768px) { //mobile端
+    
+}
+
+@media (min-width: 769px) { //pc端
+    header {
+       
+      .menu-nav-item {
+        $top: 15px;
+        $left: 4px;
+        $width: 10px;
+
+        &:after, &:before {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 0;
+            @include opacity(0);
+            @include transition();
+
+        }
+
+
+        &.current, &:hover {
+            &:after, &:before {
+                @include opacity(1);
+                width: $width;
+                height: $width;
+            }
+
+            &:before {
+                left: $left;
+                top: $top;
+                border-top: 1px solid $nav-hover-color;
+                border-left: 1px solid $nav-hover-color;
+            }
+
+            &:after {
+                right: $left;
+                border-bottom: 1px solid $nav-hover-color;
+                border-right: 1px solid $nav-hover-color;
+                bottom: $top;
+            }
+        }
+
+        
+
+        
+
+      } 
+
+
+
+    }
+}

@@ -1,0 +1,42 @@
+@media (min-width: 768px) { //mobile端
+    
+}
+
+@media (min-width: 769px) { //pc端
+    body header {
+
+        .menu-nav .menu-items-container .menu-items {
+            position: relative;
+
+            .second-sub-menu {
+                border-top: 1px solid $main-color;
+                margin-top: 34px;
+            }
+
+
+            li.menu-nav-item {
+                
+                & > a {
+                    @include center(vertical);
+                    position: relative;
+                    padding-top: 5px;
+                    padding-bottom: 5px;
+                    margin: 0 2px;
+                    line-height: inherit;
+                    height: auto;
+                    // border-radius: 4px;
+
+                }
+
+                &.current, &:hover {
+                    & > a {
+                        background: $main-color;
+                        color: #fff!important;
+                    }
+                }
+
+            } 
+        } 
+
+    }
+}

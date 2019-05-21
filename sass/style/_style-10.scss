@@ -1,0 +1,15 @@
+@media (min-width: 768px) { //mobile端
+    
+}
+
+@media (min-width: 769px) { //pc端
+    header {
+       
+        .menu-items {
+            .sub-menu {
+                border-top: 1px solid $main-color;
+            }
+        }
+
+    }
+}

@@ -10,7 +10,6 @@ $header-top-height: 0;
 @import "../mobile";
 @import "../pc";
 
-
 @media (min-width: 768px) { //mobile端
     
 }
@@ -53,16 +52,6 @@ $header-top-height: 0;
                 }
             }
         }
-
-        &.search-open {
-                    
-            #searchInput {
-                padding-left: $width / 2;
-                width: 200px;
-                
-                background-color: #fff;
-            }
-        } 
     }
 
     .content {

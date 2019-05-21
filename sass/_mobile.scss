@@ -4,7 +4,7 @@ $nav-bgcolor2:$nav-bgcolor!default;
 
 $mobile-left-width: 260px;
 $mobile-header-bar-height: 50px;
-$mobole-menu-item-padding: 15px;
+
 $mobile-header-bgcolor: $nav-bgcolor!default; //指明`!default`才能被覆盖；没有default的变量，不不受到引用顺序的影响，直接覆盖
 $mobile-header-bgcolor2: $nav-bgcolor2!default;
 $mobile-header-split-color: $split-color!default;
@@ -123,6 +123,14 @@ body {
                 display: block;
                 // color: $nav-deep-color;
 
+                &:hover {
+                    .drawer-hamburger-icon {
+                        &, &:after, &:before {
+                            background-color: $nav-hover-color;
+                        }
+                    }
+                }
+
                 .drawer-hamburger-icon {
                     @include transition(transform);
                     @include center(vertical);
@@ -186,7 +194,7 @@ body {
 
             .ham {
                 .drawer-hamburger-icon {
-                    background: transparent;
+                    background: transparent!important;
 
                     &:after {
                         @include rem(top, 0);

@@ -2,8 +2,10 @@
 
 $menu-nav-height: 64px!default;
 $menu-nav-position: right!default;
-
 $nav-bgcolor2: $nav-bgcolor!default;
+
+
+
 
 /*
 使用中ul元素上
@@ -90,6 +92,18 @@ $nav-bgcolor2: $nav-bgcolor!default;
 }
 
 @mixin operator-bar-1($height: 50px, $width: 30px, $margin-right: 15px, $deepColor: $deep-color, $lightColor: $light-color) {
+    @at-root header.search-open {
+       #searchBtn-trigger i {
+            color: $main-color!important;
+        }
+
+        #searchInput {
+            padding-left: $width / 2;
+            width: 200px;
+            background-color: #fff;
+
+        }
+    }
 
     .operator-bar-1 { //搜索，登录注册，语言
       
@@ -130,7 +144,7 @@ $nav-bgcolor2: $nav-bgcolor!default;
                     border-radius: $width / 2;
                     text-align: left;
                     padding: 0 #{$width - 2px} 0 0;
-                    // background: transparent; 
+                    background: transparent;
                     @include transition(all);
                 }
 
@@ -146,6 +160,7 @@ $nav-bgcolor2: $nav-bgcolor!default;
 
 // 登录 | 注册 中
 @mixin operator-bar-2($height: 50px, $margin-right: 15px, $deepColor: $deep-color, $lightColor: $light-color) {
+
     .operator-bar-2 { //搜索，登录注册，语言
         @include operator-bar($height, $margin-right);
         & > li {
@@ -165,22 +180,6 @@ $nav-bgcolor2: $nav-bgcolor!default;
             & > .separator, & > a .icon-arrow-down {
                 color: $lightColor;
             }
-
-
-
-            // & > a, & > .seperator {
-            //     line-height: $height;
-           
-            //     color: $deepColor;
-            // }
-
-            // & > .seperator {
-            //     color: $lightColor;
-            // }
-
-            // & > a i {
-            //     color: $deepColor;
-            // }
 
             &.search {
                 form {
@@ -318,6 +317,7 @@ $nav-bgcolor2: $nav-bgcolor!default;
 }
 
 body {
+    $menu-item-padding: 20px;
     @media (min-width: 769px) { //pc端
         .mobile-element {
             display: none;
@@ -396,7 +396,7 @@ body {
                         @include flex-1();
 
                         a {
-                            padding: 0 $mobole-menu-item-padding;
+                            padding: 0 $menu-item-padding;
                         }
 
                         li {
@@ -406,6 +406,7 @@ body {
                                 position: relative;
                                 display: inline-block; 
                                 vertical-align:top; //高度有问题
+                                height: $menu-nav-height;
 
                                 &.menu-nav-item:first-child {
                                     @include transition(margin-left);
@@ -422,12 +423,12 @@ body {
                                 & > a { // 一级菜单
                                     line-height: $menu-nav-height;
                                     height: $menu-nav-height;
-                                    max-width:  calc(7em * 1 + #{$mobole-menu-item-padding * 2}); //显示7个汉字
+                                    max-width:  calc(7em * 1 + #{$menu-item-padding * 2}); //显示7个汉字
                                 }
 
                                 .icon-arrowdropdown {
                                     position: absolute;
-                                    right: 0;
+                                    right: 4px;
                                 }
                             }
 
@@ -465,9 +466,9 @@ body {
                             @include box-shadow(0, 5px, 25px, 0px, rgba(0, 0, 0, .1));
 
                             a {
-                                width:  calc(7em * 1 + #{$mobole-menu-item-padding * 4}); //显示7个汉字
+                                width:  calc(7em * 1 + #{$menu-item-padding * 4}); //显示7个汉字
                                 text-align: left;
-                                padding: 0 $mobole-menu-item-padding * 2;
+                                padding: 0 $menu-item-padding * 1.5;
                                 color: $color;
     
                                 &:hover {

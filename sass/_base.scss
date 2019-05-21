@@ -56,7 +56,7 @@ body { // 未来 删除该部分 style 中的base.css设置
         }
 
         a:hover, a:focus {
-            &, i {
+            &, i, span {
                 color: $main-color!important;
             }
         }
@@ -70,8 +70,20 @@ body { // 未来 删除该部分 style 中的base.css设置
             }
 
             a:hover, a:focus {
-                &, i {
+                &, i, span {
                     color: $nav-hover-color!important;
+                }
+            }
+        }
+
+        .nav .sub-menu { // 导航栏二级菜单
+            &, a {
+                color: $color;
+            }
+
+            a:hover, a:focus {
+                &, i, span {
+                    color: $main-color!important;
                 }
             }
         }
