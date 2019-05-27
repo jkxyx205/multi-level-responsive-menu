@@ -55,6 +55,7 @@ $header-top-height: 128px;
 
         &.search-open {
             .operator-bar-2 li.search form {
+                display: block;
                 @include opacity(1);   
             }
         }

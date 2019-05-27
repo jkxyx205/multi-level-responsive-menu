@@ -6,6 +6,9 @@
 
   var MODE_PC = 'pc', MODE_MOBILE = 'mobile'
 
+  var MOBILE_VIEW = false // 移动设备
+  var EVENT_NAME = 'click'
+
  // 缓存jQuery对象
   var $header = $('header')
   var $firstItem = $('#menu-items .menu-nav-item:first-child')
@@ -51,13 +54,13 @@
             function initOnce() {
 
                 // 阻止事件被document捕获
-                $('.search, #searchInput').on('click', function(e) {
+                $('.search, #searchInput').on(EVENT_NAME, function(e) {
                     e.stopPropagation()
                 })
 
                 // search1
                 
-                $searchBtnTrigger1.on('click', function(e) {
+                $searchBtnTrigger1.on(EVENT_NAME, function(e) {
                     var value = $search.val()   
                     if ($header.hasClass('search-open') && value) { //search
                         console.log('search by keywords: %s', value)
@@ -65,11 +68,11 @@
                         $header.addClass('search-open')
                         $search.focus()
                     } else {
-                        $(document).trigger('click')
+                        $(document).trigger(EVENT_NAME)
                     }
                 })
 
-                $(document).on('click', function(e) {
+                $(document).on(EVENT_NAME, function(e) {
                     //search btn-1
                     if (!$header.hasClass('always-open'))
                         $header.removeClass('search-open')
@@ -153,12 +156,12 @@
 
                     if (!modeCache[winMode]) {
 
-                        $menuNavNext.on('click', function() {
+                        $menuNavNext.on(EVENT_NAME, function() {
                             offsetCursor = offsetCursor - pageWidth
                             moveItem()
                         })
 
-                        $menuNavPrev.on('click', function() {
+                        $menuNavPrev.on(EVENT_NAME, function() {
                             offsetCursor = offsetCursor + pageWidth
                             moveItem()
                         })
@@ -224,22 +227,22 @@
         
         function initOnce() {
 
-            $('#ham').on('click', function() {
+            $('#ham').on(EVENT_NAME, function() {
                 $('body').toggleClass('open')
             })
 
-            $('#m-search').on('click', function() {
+            $('#m-search').on(EVENT_NAME, function() {
                 $('#m-search-input').addClass("show")
             })
 
-            $('#layout').on('click', function() {
+            $('#layout').on(EVENT_NAME, function() {
                 if (winMode === MODE_MOBILE) {
-                    $('body').hasClass('open') && $('#ham').trigger('click')
+                    $('body').hasClass('open') && $('#ham').trigger(EVENT_NAME)
                     $('#m-search-input').removeClass("show")
                 }
             })
 
-            $('#selectLangBtn, #langSelect').on('click', function () {
+            $('#selectLangBtn, #langSelect').on(EVENT_NAME, function () {
                 $('#m-language-container').toggleClass('open')
             })
 
@@ -248,7 +251,7 @@
         initOnce()
 
         this.init = function () {
-            $dropdownLi.on('click', function (e) {
+            $dropdownLi.on(EVENT_NAME, function (e) {
                 $(this).parent().toggleClass('open')
                 $(this).next().slideToggle()
             }) 
@@ -257,13 +260,14 @@
         this.unInit = function () {
             $dropdownLi.removeClass('open')
             $('.mobile header .sub-menu').hide()
-            $dropdownLi.off('click')
+            $dropdownLi.off(EVENT_NAME)
         }
     }
 
     var modeCache = {} // 缓存mode
 
     this.init = function () {
+
         initWinInfo()
         this.mode = modeCache[winMode] ? modeCache[winMode] : (modeCache[winMode] = new this[winMode]())
         this.mode.init()
@@ -280,10 +284,33 @@
   function initWinInfo () {
     winMode = isMobileMode() ? MODE_MOBILE : MODE_PC
     $('body').removeClass().addClass(winMode)
+   
+    
   }
+
+  function doMobile(){  
+       var userAgentInfo = navigator.userAgent;  
+       var Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod");  
+       
+       for (var v = 0; v < Agents.length; v++) {  
+           if (userAgentInfo.indexOf(Agents[v]) > 0) { MOBILE_VIEW = true; break; }  
+       }  
+
+       if (MOBILE_VIEW) {
+        EVENT_NAME = 'touchstart'
+         console.log('MOBILE_VIEW.....')
+         //https://stackoverflow.com/questions/18047353/fix-css-hover-on-iphone-ipad-ipod
+         $('header *').on('touchstart', function () {
+                $(this).trigger('hover')
+            }).on('touchend', function () {
+                $(this).trigger('hover')
+         });
+       }
+   } 
 
 
   var initHandler = new InitHandler()  
+  doMobile() //处理器移动端事件
   initHandler.init()  
 
   $(window).on('resize', function() {

@@ -183,6 +183,7 @@ $nav-bgcolor2: $nav-bgcolor!default;
 
             &.search {
                 form {
+                    display: none;
                     position: absolute;
                     right: 0;
                     padding: 10px;
